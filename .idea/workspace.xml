@@ -26,8 +26,8 @@
       <file leaf-file-name="cv.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="168" column="13" selection-start-line="168" selection-start-column="13" selection-end-line="168" selection-end-column="13" />
+            <state relative-caret-position="425">
+              <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -63,7 +63,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="481" />
     <option name="y" value="116" />
     <option name="width" value="1235" />
@@ -130,15 +130,15 @@
       <workItem from="1525797861092" duration="7355000" />
       <workItem from="1525880464608" duration="1443000" />
       <workItem from="1525902372186" duration="13344000" />
-      <workItem from="1526287649220" duration="1430000" />
+      <workItem from="1526287649220" duration="2582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23572000" />
+    <option name="totallyTimeSpent" value="24724000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="481" y="116" width="1235" height="816" extended-state="0" />
+    <frame x="481" y="116" width="1235" height="816" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20590648" />
@@ -213,8 +213,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="168" column="13" selection-start-line="168" selection-start-column="13" selection-end-line="168" selection-end-column="13" />
+        <state relative-caret-position="425">
+          <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
         </state>
       </provider>
     </entry>
