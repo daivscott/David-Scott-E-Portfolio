@@ -1,0 +1,145 @@
+{
+	"textures": [
+		{
+			"image": "Player.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 63,
+				"h": 180
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "PistolShoot/PistolShoot4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 70,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 61,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 61,
+						"h": 34
+					},
+					"anchor": {
+						"x": 0.21428571,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "PistolShoot/PistolShoot5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 70,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 59,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 37,
+						"w": 59,
+						"h": 34
+					},
+					"anchor": {
+						"x": 0.21428571,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "PistolShoot/PistolShoot2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 70,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 55,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 73,
+						"w": 55,
+						"h": 34
+					},
+					"anchor": {
+						"x": 0.21428571,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "PistolShoot/PistolShoot3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 70,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 55,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 109,
+						"w": 55,
+						"h": 34
+					},
+					"anchor": {
+						"x": 0.21428571,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "PistolShoot/PistolShoot1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 70,
+						"h": 34
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 51,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 145,
+						"w": 51,
+						"h": 34
+					},
+					"anchor": {
+						"x": 0.21428571,
+						"y": 0.5
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:241b3253cb5047e6f2419c850f192b02:26d55254d21a87c498605ba62957655e:67f262b79b5ce427cc4bd691e0602633$"
+	}
+}
