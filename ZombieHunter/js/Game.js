@@ -1,15 +1,5 @@
-var config = {
-    type:Phaser.AUTO,
-    width:800,
-    height:600,
-    physics:{
-        default:'arcade',
-        arcade:{
-            gravity:{y: 200}
-        }
-    },
-    //scene:[MainMenu, Level1]
-    scene:[Level1]
-}
-
-var game = new Phaser.Game(config);
+var game = new Phaser.Game(1500, 1000, Phaser.AUTO);
+game.state.add('Level0', zhgame.Level0);
+game.state.add('Level1', zhgame.Level1);
+game.state.add('Level2', zhgame.Level2);
+game.state.start('Level0');
