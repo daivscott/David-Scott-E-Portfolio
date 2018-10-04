@@ -6,6 +6,8 @@ zhgame.Level0.prototype = {
         game.load.image('Player1', 'assets/sprites/PistolShoot1.png')
     },
     create: function(){
+
+        game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#a32f11';
         console.log('Level0');
         AddChangeStateEventListeners();
@@ -14,17 +16,21 @@ zhgame.Level0.prototype = {
         player1 = game.add.sprite(centreX, centreY, 'Player1');
         player1.anchor.setTo(0.5, 0.5);
         },
+
     update: function(){
-        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+
+        player1.rotation = game.physics.arcade.angleToPointer(player1);
+
+        if(game.input.keyboard.isDown(Phaser.Keyboard.D)){
             player1.x += speed;
         }
-        else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+        else if(game.input.keyboard.isDown(Phaser.Keyboard.A)){
             player1.x -= speed;
         }
-        if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+        if(game.input.keyboard.isDown(Phaser.Keyboard.W)){
             player1.y -= speed;
         }
-        else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+        else if(game.input.keyboard.isDown(Phaser.Keyboard.S)){
             player1.y += speed;
         }
     }
