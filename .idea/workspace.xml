@@ -12,13 +12,32 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="generic-joystick.html" pinned="false" current-in-tab="true">
+              <entry file="file://$USER_HOME$/Downloads/Phaser-Virtual-Joystick-Plugin-v1/examples/generic-joystick.html">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="374">
+                    <caret line="106" column="55" lean-forward="true" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="55" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+            <state relative-caret-position="51">
+              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="4" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -26,17 +45,8 @@
       <file leaf-file-name="cv.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
+            <state relative-caret-position="518">
               <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ZHGame.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -44,8 +54,26 @@
       <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="37" selection-start-column="37" selection-end-column="37" />
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZHGame.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Level0.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level0.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-255">
+              <caret column="95" selection-start-column="95" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -55,15 +83,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Level0.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level0.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -92,8 +111,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -114,6 +133,9 @@
         <option value="$PROJECT_DIR$/ZombieHunter/js/Level0.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/index.html" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/phaser-plugin-virtual-gamepad.js" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level0.js" />
       </list>
     </option>
   </component>
@@ -127,9 +149,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="794" />
-    <option name="y" value="140" />
-    <option name="width" value="1065" />
+    <option name="x" value="706" />
+    <option name="y" value="121" />
+    <option name="width" value="1112" />
     <option name="height" value="715" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -155,6 +177,13 @@
               <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
               <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
               <item name="ZombieHunter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="ZombieHunter" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -219,18 +248,19 @@
       <workItem from="1537876155644" duration="9627000" />
       <workItem from="1538478455154" duration="10220000" />
       <workItem from="1538496525502" duration="1533000" />
-      <workItem from="1538682991572" duration="2634000" />
+      <workItem from="1538682991572" duration="2747000" />
+      <workItem from="1538686734121" duration="29896000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58547000" />
+    <option name="totallyTimeSpent" value="88556000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="794" y="140" width="1065" height="715" extended-state="0" />
+    <frame x="706" y="121" width="1112" height="715" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2049571" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17153284" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -256,6 +286,20 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -517,6 +561,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Downloads/phaser-plugin-virtual-gamepad-master/phaser-plugin-virtual-gamepad-master/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="63" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/phaser-plugin-virtual-gamepad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="109" column="51" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -524,8 +589,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/assets/spritesheet/Player.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="4" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/styles/zhgame.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -534,38 +610,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
+    <entry file="file://$USER_HOME$/Downloads/Phaser-Virtual-Joystick-Plugin-v1/examples/generic-joystick.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="37" selection-start-column="37" selection-end-column="37" />
+        <state relative-caret-position="374">
+          <caret line="106" column="55" lean-forward="true" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level0.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        <state relative-caret-position="-255">
+          <caret column="95" selection-start-column="95" selection-end-column="95" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
