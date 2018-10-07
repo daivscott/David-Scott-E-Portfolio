@@ -1,4 +1,5 @@
-var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, speed = 200, rocks, grass;
+var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, speed = 200, rocks, grass,
+    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200;
 
 
 zhgame.Level0 = function(){};
@@ -9,6 +10,9 @@ zhgame.Level0.prototype = {
 
         // reference the Player
         game.load.image('Player1', 'assets/sprites/PistolShoot1.png');
+
+        // reference the bullet
+        game.load.image('bullet', 'assets/sprites/Bullet-1.png');
 
         // reference the phaser buttons
         game.load.spritesheet('controllerBtn', 'assets/spritesheet/ControllerButton_spritesheet.png', 193, 71);
@@ -72,6 +76,18 @@ zhgame.Level0.prototype = {
         fullscreenButton = game.add.button(100, 100, 'fullscreenBtn', changeFullscreen, this, 2, 1, 0);
         // controllerButton.scale.setTo(0.8, 0.8);
         // fullscreenButton.scale.setTo(0.8, 0.8);
+
+        //----Bullets-------------------------------------------
+
+        bullets = game.add.group();
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.ARCADE;
+        bullets.createMultiple(50, 'bullet');
+        bullets.setAll('checkWorldBounds', true);
+        bullets.setAll('outOfBoundsKill', true);
+        bullets.setAll('anchor.y', 0.5);
+        bullets.setAll('scale.x', 0.85);
+        bullets.setAll('scale.y', 0.85);
 
         //----Player--------------------------------------------
 
@@ -156,8 +172,25 @@ zhgame.Level0.prototype = {
                 player1.body.velocity.y = 0;
             }
         }
+
+        if(game.input.activePointer.isDown)
+        {
+            fire();
+        }
     }
 };
+
+function fire() {
+    if(game.time.now > nextFire)
+    {
+        nextFire = game.time.now + fireRate;
+        var bullet = bullets.getFirstDead();
+        bullet.reset(player1.x, player1.y);
+
+        game.physics.arcade.moveToPointer(bullet, bulletSpeed);
+        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
+    }
+}
 
 function changeControls () {
 
