@@ -85,9 +85,9 @@ zhgame.Level0.prototype = {
         bullets.createMultiple(50, 'bullet');
         bullets.setAll('checkWorldBounds', true);
         bullets.setAll('outOfBoundsKill', true);
-        bullets.setAll('anchor.y', 0.5);
-        bullets.setAll('scale.x', 0.85);
-        bullets.setAll('scale.y', 0.85);
+        bullets.setAll('anchor.y', 0.55);
+        bullets.setAll('scale.x', 2);
+        bullets.setAll('scale.y', 2);
 
         //----Player--------------------------------------------
 
@@ -105,7 +105,15 @@ zhgame.Level0.prototype = {
         // aligned to bottom left of the screen
         gamepad = game.plugins.add(Phaser.VirtualJoystick);
         stick = gamepad.addStick(0, 0, 200, 'generic');
+        stick.scale = 0.5;
         stick.alignBottomLeft(50);
+
+        fireButton = gamepad.addButton(200, 200, 'generic', 'button1-up', 'button1-down');
+
+        fireButton.onDown.add(GamepadFire);
+        fireButton.repeatRate = 100;
+
+        fireButton.alignBottomRight(50);
 
         // create a boolean variable to toggle pad visibility
         padVisible = true;
@@ -147,6 +155,7 @@ zhgame.Level0.prototype = {
         }
         else
         {
+            // disable and hide the virtual pad
             stick.enabled = false;
             stick.visible = false;
             // set the players rotation to point to mouse pointer
@@ -171,24 +180,45 @@ zhgame.Level0.prototype = {
             else{
                 player1.body.velocity.y = 0;
             }
+
+            // check for left mouse down and fire
+            if(game.input.activePointer.leftButton.isDown)
+            {
+                MouseFire();
+            }
         }
 
-        if(game.input.activePointer.isDown)
-        {
-            fire();
-        }
+        // if(game.input.activePointer.leftButton.isDown)
+        // {
+        //     fire();
+        // }
     }
 };
 
-function fire() {
+function MouseFire() {
+    if(game.time.now > nextFire)
+    {
+        nextFire = game.time.now + fireRate;
+        var bullet = bullets.getFirstDead();
+        bullet.reset(player1.x, player1.y);
+        //
+
+        game.physics.arcade.moveToPointer(bullet, bulletSpeed);
+        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
+    }
+}
+
+function GamepadFire(){
     if(game.time.now > nextFire)
     {
         nextFire = game.time.now + fireRate;
         var bullet = bullets.getFirstDead();
         bullet.reset(player1.x, player1.y);
 
-        game.physics.arcade.moveToPointer(bullet, bulletSpeed);
-        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
+        game.physics.arcade.velocityFromRotation(player1.rotation, bulletSpeed, bullet.body.velocity);
+        //game.physics.arcade.moveToXY(bullet, shootTarget.x, shootTarget.y);
+        //bullet.rotation = game.physics.arcade.angleToPointer(player1);
+        bullet.rotation = player1.rotation;
     }
 }
 
