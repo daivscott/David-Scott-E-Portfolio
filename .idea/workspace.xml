@@ -17,10 +17,14 @@
       <file leaf-file-name="CTPBlog.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="111" selection-end-column="134" />
+            <state relative-caret-position="578">
+              <caret line="61" column="12" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="75" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#3;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#4;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -31,11 +35,73 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="LandingPage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/LandingPage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-151">
+              <caret line="31" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="87" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cv.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/cv.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="84" column="26" lean-forward="false" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZHGame.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="87" column="7" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CVMenu.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/CVMenu.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="66" column="36" lean-forward="false" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CTPBlogStylesheet.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlogStylesheet.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+            <state relative-caret-position="204">
+              <caret line="12" column="69" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -46,15 +112,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>level0</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -74,19 +141,16 @@
         <option value="$PROJECT_DIR$/ZombieHunter/js/Level0.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/phaser-plugin-virtual-gamepad.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Utils.js" />
-        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Utils.ts" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level0.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level2.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js" />
-        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/Level3.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/Level4.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/Level1.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/Level2.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/styles/gallery.css" />
-        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/index.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/Level0.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/gallery.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/Game.js" />
@@ -105,7 +169,15 @@
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/state12.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/Gallery/js/Thumb2.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/stylesheet/CTPBlogStylesheet.css" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/js/collapsible.js" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/js/collapsiblePost.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlogStylesheet.css" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/LandingPage.html" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/index.html" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/CV/cv.html" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/CV/CVMenu.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlog.html" />
       </list>
     </option>
@@ -119,11 +191,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="235" />
-    <option name="y" value="104" />
-    <option name="width" value="1605" />
-    <option name="height" value="760" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="567" />
+    <option name="y" value="90" />
+    <option name="width" value="1228" />
+    <option name="height" value="962" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -158,7 +230,7 @@
               <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
               <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
               <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
-              <item name="CTPBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="CV" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -179,9 +251,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\David\Desktop\NewGame\David-Scott-E-Portfolio\David-Scott-E-Portfolio\CTPBlog" />
       <recent name="C:\Users\Music\Desktop\David-Scott-E-Portfolio\David-Scott-E-Portfolio" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\David\Desktop\NewGame\David-Scott-E-Portfolio\David-Scott-E-Portfolio\CV" />
       <recent name="C:\Users\David\Desktop\NewGame\David-Scott-E-Portfolio\David-Scott-E-Portfolio\CTPBlog" />
       <recent name="C:\Users\David\Desktop\NewGame\David-Scott-E-Portfolio\David-Scott-E-Portfolio\CTPBlog\stylesheet" />
       <recent name="C:\Users\Music\Desktop\David-Scott-E-Portfolio\David-Scott-E-Portfolio\ZombieHunter\js" />
@@ -200,11 +274,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.CTPBlog.html">
+    <configuration name="CTPBlog.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/David-Scott-E-Portfolio/David-Scott-E-Portfolio/CTPBlog/CTPBlog.html" />
     <configuration name="Level1.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js" working-dir="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.Level1.js" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.CTPBlog.html" />
+    </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.Level1.js" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.CTPBlog.html" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.Level1.js" />
       </list>
     </recent_temporary>
   </component>
@@ -236,34 +316,33 @@
       <workItem from="1538875415558" duration="8463000" />
       <workItem from="1538887785502" duration="58951000" />
       <workItem from="1539166096568" duration="964000" />
-      <workItem from="1539299948180" duration="12443000" />
+      <workItem from="1539299948180" duration="63449000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201356000" />
+    <option name="totallyTimeSpent" value="252362000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="235" y="104" width="1605" height="760" extended-state="1" />
-    <editor active="true" />
+    <frame x="567" y="90" width="1228" height="962" extended-state="0" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16740088" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14273928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979977" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993576" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39929327" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -278,41 +357,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="56" lean-forward="false" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="115" column="12" lean-forward="false" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="29" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -327,7 +371,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/cv.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
           <caret line="115" column="12" lean-forward="false" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
@@ -341,7 +385,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/cv.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
           <caret line="115" column="12" lean-forward="false" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
@@ -355,7 +399,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/cv.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
@@ -369,7 +413,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/cv.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
           <caret line="61" column="117" lean-forward="false" selection-start-line="61" selection-start-column="117" selection-end-line="61" selection-end-column="117" />
@@ -390,13 +434,6 @@
     <entry file="file://$USER_HOME$/Downloads/Phaser-Virtual-Joystick-Plugin-v1/examples/generic-joystick.html" />
     <entry file="file://$USER_HOME$/Downloads/freebie-4-bootstrap-gallery-templates/clean/index.html" />
     <entry file="file://$USER_HOME$/Downloads/PhotoSwipe-master/PhotoSwipe-master/website/index.html" />
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/styles/zhgame.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -417,20 +454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/cv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="44" column="90" lean-forward="false" selection-start-line="44" selection-start-column="90" selection-end-line="44" selection-end-column="90" />
         </state>
       </provider>
     </entry>
@@ -573,20 +596,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/phrase.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="386" column="16" lean-forward="false" selection-start-line="386" selection-start-column="16" selection-end-line="386" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/js/collapsiblePost.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlogStylesheet.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        <state relative-caret-position="204">
+          <caret line="12" column="69" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="69" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/cv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="84" column="26" lean-forward="false" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="87" column="7" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/CVMenu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="66" column="36" lean-forward="false" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/LandingPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-151">
+          <caret line="31" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="87" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="111" selection-end-column="134" />
+        <state relative-caret-position="578">
+          <caret line="61" column="12" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="75" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#3;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#4;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />

@@ -3,7 +3,10 @@
 }
 
 body {
-    font-family: Arial;
+    /*font: 14px Montserrat, sans-serif;*/
+    max-width: 100%;
+    line-height: 1.8;
+    font-size: 20px;
     color: #ffffff;
     padding: 20px;
     background: #000000;
@@ -35,20 +38,104 @@ body {
     padding-left: 20px;
 }
 
+/* Left image*/
+.leftDiv {
+    float: left;
+    width: 50%;
+    padding-left: 20px;
+}
+
+/* Right image */
+.rightDiv {
+    float: left;
+    width: 50%;
+    padding-left: 20px;
+}
+
 /* Fake image */
 .fakeimg {
     background-color: #aaa;
     width: 100%;
     padding: 20px;
-    content:url('images/creative-technologies-sketch.png');
+    /*content:url('images/creative-technologies-sketch.png');*/
 }
+
+/* The Light shooting image */
+.theLightImg1 {
+    background-color: #aaa;
+    width: 100%;
+    padding: 0px;
+    content:url('images/portfolio/TheLight_shooting.png');
+}
+
+/* The Light rocks image */
+.theLightImg2 {
+    background-color: #aaa;
+    width: 100%;
+    padding: 0px;
+    content:url('images/portfolio/TheLight_rocks.png');
+}
+
+/* The 2018 ERA image */
+.entertainmentGraph {
+    background-color: #aaa;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 80%;
+    /*padding: 0px;*/
+    content:url('images/portfolio/2018Entertainment.PNG');
+}
+
+/* Bullet Sponge saucer scene image */
+.saucerScene {
+    background-color: #aaa;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding: 0px;
+    content:url('images/portfolio/BulletSponge.png');
+}
+
+/* Fruit Bowl image */
+.fruitBowl {
+    background-color: #aaa;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding: 0px;
+    content:url('images/portfolio/FruitBowl.png');
+}
+
+/* Retrolympics image */
+.retrolympics {
+    background-color: #aaa;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 80%;
+    padding: 0px;
+    content:url('images/portfolio/Retrolympics.png');
+}
+
+/*Italics*/
+.itals {
+    text-align: center;
+    font-family: Calibri;
+    font: 23px Calibri, Calibri;
+    font-style: italic;
+}
+
 
 /* Add a card effect for articles */
 .card {
-    /*background-color: #1e1e1e;*/
-    padding: 20px;
+    background-color: #1e1e1e;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    padding: 50px;
     margin-top: 20px;
-    background:url("images/postBackground.png");
+    /*background:url("images/postBackground.png");*/
     background-size: cover;
 }
 
@@ -68,8 +155,13 @@ body {
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
     .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+
+    .leftDiv, .rightDiv {
         width: 100%;
         padding: 0;
     }
