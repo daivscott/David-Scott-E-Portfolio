@@ -5,6 +5,11 @@
     <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
 
 
     <script src="phaser/phaser.min.js"></script>
@@ -17,8 +22,50 @@
 
     <meta charset="UTF-8">
     <title>Zombie Hunter</title>
+
+    <style>
+
+        .btn-warning {
+            border-color: #000000;!important;
+            background-color: #ff885b; !important;}
+
+        .btn-warning:hover {
+            background-color: #974c42;!important;
+            border-color: #ff885b; !important;}
+        .btn-warning:active {
+            background-color: #1e1e1e;!important;
+            border-color: #ff885b; !important;}
+
+        .btn-warning:active:focus {
+            background-color: #1e1e1e;!important;
+            border-color: #ff885b; !important;}
+
+        .btn-warning:focus {
+            background-color: #1e1e1e;!important;
+            border-color: #ff885b; !important;}
+
+        .bgImage{
+            background-color: black;
+            background:url("../CTPBlog/images/postBackground.png");
+            background-size: 50%;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 1200px) {
+            .bgImage{
+                background-size: 100%;
+            }
+        }
+
+    </style>
+
+
 </head>
-<body style="background-color: black">
+<body class="bgImage" >
+
+<a href = "../index.html" class="btn btn-warning" role="button"><h2>Back</h2></a>
+
     <script src="js/Game.js"></script>
+
 </body>
 </html>
