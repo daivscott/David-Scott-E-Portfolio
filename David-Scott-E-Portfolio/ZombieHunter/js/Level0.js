@@ -1,5 +1,6 @@
-var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, speed = 200, rocks, grass,
-    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200;
+var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
+    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200,
+    enemyX, enemyY, distanceToPlayer, enemyAngle, enemySpeedX, enemySpeedY, enemySpeed;
 
 
 zhgame.Level0 = function(){};
@@ -10,6 +11,9 @@ zhgame.Level0.prototype = {
 
         // reference the Player
         game.load.image('Player1', 'assets/sprites/PistolShoot1.png');
+
+        // reference to zombie
+        game.load.image('Enemy1', 'assets/sprites/zombie1.png');
 
         // reference the bullet
         game.load.image('bullet', 'assets/sprites/Bullet-1.png');
@@ -99,6 +103,16 @@ zhgame.Level0.prototype = {
         game.physics.enable(player1);
         player1.body.collideWorldBounds = true;
 
+        //----Enemy---------------------------------------------
+        //add the enemy to centre of the screen with aa slight offset to thr right
+        enemy1 = game.add.sprite(centreX + 200, centreY, 'Enemy1');
+        enemy1.scale.setTo(0.2, 0.2);
+        enemy1.anchor.setTo(0.5, 0.5);
+
+        // enable physics for the enemy and set world bounds
+        game.physics.enable(enemy1);
+        enemy1.body.collideWorldBounds = true;
+
         //----Gamepad-------------------------------------------
 
         // Add the Virtual Gamepad plugin to the game and create a stick
@@ -128,8 +142,12 @@ zhgame.Level0.prototype = {
         },
 
     update: function(){
+        // Player collision
         game.physics.arcade.collide(player1, rocks, function(){console.log('Hitting Rocks'); });
         game.physics.arcade.collide(player1, grass, function(){console.log('Hitting Wall'); });
+        // Enemy collision
+        game.physics.arcade.collide(enemy1, rocks, function(){console.log('Hitting Rocks'); });
+        game.physics.arcade.collide(enemy1, grass, function(){console.log('Hitting Wall'); });
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
         controllerButton.x = game.camera.x + 200;
@@ -138,8 +156,10 @@ zhgame.Level0.prototype = {
         //virtual pad movement
         if(padVisible)
         {
+            // enable and show mobile controls
             stick.enabled = true;
             stick.visible = true;
+            fireButton.visible = true;
 
             // Read joystick data to set players angle and movement speed
             if (stick.isDown)
@@ -155,9 +175,11 @@ zhgame.Level0.prototype = {
         }
         else
         {
-            // disable and hide the virtual pad
+            // disable and hide mobile controls
             stick.enabled = false;
             stick.visible = false;
+            fireButton.visible = false;
+
             // set the players rotation to point to mouse pointer
             player1.rotation = game.physics.arcade.angleToPointer(player1);
 
@@ -188,12 +210,16 @@ zhgame.Level0.prototype = {
             }
         }
 
-        // if(game.input.activePointer.leftButton.isDown)
-        // {
-        //     fire();
-        // }
+
+        EnemyMove();
+
     }
 };
+
+function EnemyMove() {
+    game.physics.arcade.moveToObject(enemy1,player1,120,enemySpeed*1000);
+    enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y);
+}
 
 function MouseFire() {
     if(game.time.now > nextFire)

@@ -52,6 +52,13 @@ body {
     padding-left: 20px;
 }
 
+/* floatRight image */
+.floatRightDiv {
+    float: right;
+    width: 50%;
+    padding-left: 20px;
+}
+
 /* Fake image */
 .fakeimg {
     background-color: #aaa;
@@ -123,7 +130,8 @@ body {
     background-color: #aaa;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    margin-top: 20px;
+    width: 70%;
     padding: 0px;
     content:url('images/professionalism/Professionalism.jpg');
 }
@@ -143,7 +151,8 @@ body {
     background-color: #aaa;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    margin-top: 10px;
+    width: 80%;
     padding: 0px;
     content:url('images/professionalism/tigaLogo.jpg');
 }
@@ -213,7 +222,7 @@ body {
     background-color: #aaa;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 90%;
     padding: 0px;
     content:url('images/ip/itellectual.png');
 }
@@ -223,7 +232,7 @@ body {
     background-color: #aaa;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 50%;
     padding: 0px;
     content:url('images/ip/Copyright.jpg');
 }
@@ -233,7 +242,7 @@ body {
     background-color: #aaa;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 50%;
     padding: 0px;
     content:url('images/ip/TM.jpg');
 }
@@ -243,7 +252,7 @@ body {
     background-color: #aaa;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 40%;
     padding: 0px;
     content:url('images/ip/anne.gif');
 }
@@ -253,7 +262,7 @@ body {
     background-color: #aaa;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 100%;
     padding: 0px;
     content:url('images/ip/Apple-v-Samsung-court.jpg');
 }
