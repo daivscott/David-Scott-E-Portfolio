@@ -1,6 +1,5 @@
 var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
-    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200,
-    enemyX, enemyY, distanceToPlayer, enemyAngle, enemySpeedX, enemySpeedY, enemySpeed;
+    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed;
 
 
 zhgame.Level0 = function(){};
@@ -104,7 +103,7 @@ zhgame.Level0.prototype = {
         player1.body.collideWorldBounds = true;
 
         //----Enemy---------------------------------------------
-        //add the enemy to centre of the screen with aa slight offset to thr right
+        //add the enemy to centre of the screen with aa slight offset to the right
         enemy1 = game.add.sprite(centreX + 200, centreY, 'Enemy1');
         enemy1.scale.setTo(0.2, 0.2);
         enemy1.anchor.setTo(0.5, 0.5);
@@ -212,9 +211,14 @@ zhgame.Level0.prototype = {
 
 
         EnemyMove();
+        game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this);
 
     }
 };
+
+function RestartGame() {
+    game.state.start('Level2');
+}
 
 function EnemyMove() {
     game.physics.arcade.moveToObject(enemy1,player1,120,enemySpeed*1000);
