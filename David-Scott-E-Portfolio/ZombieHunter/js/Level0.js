@@ -12,7 +12,7 @@ zhgame.Level0.prototype = {
         game.load.image('Player1', 'assets/sprites/PistolShoot1.png');
 
         // reference to zombie
-        game.load.image('Enemy1', 'assets/sprites/zombie1.png');
+        game.load.image('Enemy1', 'assets/sprites/zombie.png');
 
         // reference the bullet
         game.load.image('bullet', 'assets/sprites/Bullet-1.png');
@@ -41,7 +41,7 @@ zhgame.Level0.prototype = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
         // set background colour
-        game.stage.backgroundColor = '#a32f11';
+        game.stage.backgroundColor = '#000000';
 
         // execute event listeners
         AddChangeStateEventListeners();
@@ -105,7 +105,7 @@ zhgame.Level0.prototype = {
         //----Enemy---------------------------------------------
         //add the enemy to centre of the screen with aa slight offset to the right
         enemy1 = game.add.sprite(centreX + 200, centreY, 'Enemy1');
-        enemy1.scale.setTo(0.2, 0.2);
+        //enemy1.scale.setTo(0.2, 0.2);
         enemy1.anchor.setTo(0.5, 0.5);
 
         // enable physics for the enemy and set world bounds
@@ -138,6 +138,8 @@ zhgame.Level0.prototype = {
         game.camera.deadzone = new Phaser.Rectangle(centreX - 100, centreY - 100, 200, 200);
 
         // game.input.onDown.add(gofull, this);
+
+        game.time.advancedTiming = true;
         },
 
     update: function(){
@@ -153,7 +155,8 @@ zhgame.Level0.prototype = {
         controllerButton.y = game.camera.y + 0;
 
         //virtual pad movement
-        if(padVisible)
+        //if(padVisible)
+        if(!Phaser.Device.desktop)
         {
             // enable and show mobile controls
             stick.enabled = true;
@@ -213,7 +216,12 @@ zhgame.Level0.prototype = {
         EnemyMove();
         game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this);
 
-    }
+    },
+
+    render: function() {
+    game.debug.text(game.time.fps, 780, 14, "#00ff00");
+}
+
 };
 
 function RestartGame() {
@@ -251,6 +259,8 @@ function GamepadFire(){
         bullet.rotation = player1.rotation;
     }
 }
+
+
 
 function changeControls () {
 
