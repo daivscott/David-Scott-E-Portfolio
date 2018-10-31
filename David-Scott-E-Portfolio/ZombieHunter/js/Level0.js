@@ -1,5 +1,5 @@
 var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
-    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed;
+    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies;
 
 
 zhgame.Level0 = function(){};
@@ -9,10 +9,10 @@ zhgame.Level0.prototype = {
         game.load.atlas('generic', 'assets/skins/generic-joystick.png', 'assets/skins/generic-joystick.json');
 
         // reference the Player
-        game.load.image('Player1', 'assets/sprites/PistolShoot1.png');
+        game.load.image('Player1', 'assets/sprites/PistolShoot2.png');
 
         // reference to zombie
-        game.load.image('Enemy1', 'assets/sprites/zombie.png');
+        game.load.image('Enemy1', 'assets/sprites/zombie1.png');
 
         // reference the bullet
         game.load.image('bullet', 'assets/sprites/Bullet-1.png');
@@ -75,7 +75,7 @@ zhgame.Level0.prototype = {
         //----Buttons-------------------------------------------
 
         // create the button to change controls
-        controllerButton = game.add.button(100, 100, 'controllerBtn', changeControls, this, 2, 1, 0);
+        //controllerButton = game.add.button(100, 100, 'controllerBtn', changeControls, this, 2, 1, 0);
         fullscreenButton = game.add.button(100, 100, 'fullscreenBtn', changeFullscreen, this, 2, 1, 0);
         // controllerButton.scale.setTo(0.8, 0.8);
         // fullscreenButton.scale.setTo(0.8, 0.8);
@@ -95,7 +95,7 @@ zhgame.Level0.prototype = {
         //----Player--------------------------------------------
 
         // add the player to the centre of the screen with a centre anchor set
-        player1 = game.add.sprite(centreX, centreY, 'Player1');
+        player1 = game.add.sprite(10, 10, 'Player1');
         player1.anchor.setTo(0.5, 0.5);
 
         // enable physics for the player and set world bounds
@@ -103,14 +103,27 @@ zhgame.Level0.prototype = {
         player1.body.collideWorldBounds = true;
 
         //----Enemy---------------------------------------------
-        //add the enemy to centre of the screen with aa slight offset to the right
-        enemy1 = game.add.sprite(centreX + 200, centreY, 'Enemy1');
-        //enemy1.scale.setTo(0.2, 0.2);
-        enemy1.anchor.setTo(0.5, 0.5);
+        // //add the enemy to centre of the screen with aa slight offset to the right
+        // enemy1 = game.add.sprite(centreX + 200, centreY, 'Enemy1');
+        // //enemy1.scale.setTo(0.2, 0.2);
+        // enemy1.anchor.setTo(0.5, 0.5);
+        //
+        // // enable physics for the enemy and set world bounds
+        // game.physics.enable(enemy1);
+        // enemy1.body.collideWorldBounds = true;
 
-        // enable physics for the enemy and set world bounds
-        game.physics.enable(enemy1);
-        enemy1.body.collideWorldBounds = true;
+        enemies = game.add.group();
+
+
+        // Create some enemies.
+        for (var i = 0; i < 50; i++)
+        {
+            // Since the getFirstExists() which we'll use for recycling
+            // cannot allocate new objects, create them manually here.
+            enemy1 = enemies.create(360 + Math.random() * 200, 120 + Math.random() * 200, 'Enemy1');
+            game.physics.enable(enemy1);
+            enemy1.body.collideWorldBounds = true;
+        }
 
         //----Gamepad-------------------------------------------
 
@@ -147,12 +160,13 @@ zhgame.Level0.prototype = {
         game.physics.arcade.collide(player1, rocks, function(){console.log('Hitting Rocks'); });
         game.physics.arcade.collide(player1, grass, function(){console.log('Hitting Wall'); });
         // Enemy collision
-        game.physics.arcade.collide(enemy1, rocks, function(){console.log('Hitting Rocks'); });
-        game.physics.arcade.collide(enemy1, grass, function(){console.log('Hitting Wall'); });
+        game.physics.arcade.collide(enemies, rocks, function(){console.log('Hitting Rocks'); });
+        game.physics.arcade.collide(enemies, grass, function(){console.log('Hitting Wall'); });
+        game.physics.arcade.collide(enemies, enemies, function(){console.log('Hitting Wall'); });
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
-        controllerButton.x = game.camera.x + 200;
-        controllerButton.y = game.camera.y + 0;
+        // controllerButton.x = game.camera.x + 200;
+        // controllerButton.y = game.camera.y + 0;
 
         //virtual pad movement
         //if(padVisible)
@@ -213,8 +227,29 @@ zhgame.Level0.prototype = {
         }
 
 
-        EnemyMove();
-        game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this);
+            enemies.forEach(function (enemy1) {
+                if(game.physics.arcade.distanceBetween(enemy1, player1) < 300)
+                {
+                    game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null),
+                        enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y)
+                }
+                else
+                {
+                    game.physics.arcade.moveToObject(enemy1,player1,0, null)
+                }
+                game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this)
+                });
+
+
+        // if(game.physics.arcade.distanceBetween(enemy1, player1) < 300)
+        // {
+        //     EnemyMove();
+        // }
+        // else
+        // {
+        //     game.physics.arcade.moveToObject(enemy1,player1,0, 0);
+        // }
+        // game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this);
 
     },
 
@@ -228,10 +263,10 @@ function RestartGame() {
     game.state.start('Level2');
 }
 
-function EnemyMove() {
-    game.physics.arcade.moveToObject(enemy1,player1,120,enemySpeed*1000);
-    enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y);
-}
+// function EnemyMove() {
+//     game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, 2000);
+//     enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y);
+// }
 
 function MouseFire() {
     if(game.time.now > nextFire)
@@ -262,11 +297,11 @@ function GamepadFire(){
 
 
 
-function changeControls () {
-
-    padVisible = !padVisible;
-
-}
+// function changeControls () {
+//
+//     padVisible = !padVisible;
+//
+// }
 
 function changeFullscreen(){
     gofull();
