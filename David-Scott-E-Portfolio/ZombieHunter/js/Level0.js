@@ -181,8 +181,19 @@ zhgame.Level0.prototype = {
             if (stick.isDown)
             {
                 player1.rotation = stick.rotation;
-                player1.body.velocity.x += speed/100 * stick.x;
-                player1.body.velocity.y += speed/100 * stick.y;
+                player1.body.velocity.x += speed/50 * stick.x;
+                player1.body.velocity.y += speed/50 * stick.y;
+                if(player1.body.velocity.x > 200)
+                {
+                    player1.body.velocity.x = 200;
+                }
+                if(player1.body.velocity.y > 200)
+                {
+                    player1.body.velocity.y = 200;
+                }
+                // // remove movement physics
+                // player1.body.velocity.x = speed * stick.x;
+                // player1.body.velocity.y = speed * stick.y;
             }
             else{
                 player1.body.velocity.x = 0;
@@ -238,9 +249,11 @@ zhgame.Level0.prototype = {
                     game.physics.arcade.moveToObject(enemy1,player1,0, null)
                 }
                 game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this)
-                });
+                //game.physics.arcade.overlap(enemy1, bullets, killZombie, null, this)
 
+            });
 
+        game.physics.arcade.overlap(enemy1, bullets, killZombie, null, this)
         // if(game.physics.arcade.distanceBetween(enemy1, player1) < 300)
         // {
         //     EnemyMove();
@@ -258,6 +271,31 @@ zhgame.Level0.prototype = {
 }
 
 };
+
+function killZombie() {
+
+    var baddie = enemies.getFirstAlive();
+
+    if (baddie)
+    {
+        baddie.kill();
+    }
+
+}
+
+function createZombie() {
+
+    // Recycle using getFirstExists(false)
+    // Notice that this method will not create new objects if there's no one
+    // available, and it won't change size of this group.
+    var enemy = enemies.getFirstExists(false);
+
+    if (enemy)
+    {
+        enemy.revive();
+    }
+
+}
 
 function RestartGame() {
     game.state.start('Level2');
