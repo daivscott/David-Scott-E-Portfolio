@@ -10,6 +10,7 @@ zhgame.Level3.prototype = {
 
         // reference the Player
         game.load.image('Player1', 'assets/sprites/PistolShoot2.png');
+        game.load.spritesheet('PlayerPistol', 'assets/sprites/PistolShoot.png', 70, 34, 5);
 
         // reference to zombie
         game.load.image('Enemy1', 'assets/sprites/zombie1.png');
@@ -98,12 +99,16 @@ zhgame.Level3.prototype = {
         //----Player--------------------------------------------
 
         // add the player to the centre of the screen with a centre anchor set
-        player1 = game.add.sprite(10, 10, 'Player1');
+        player1 = game.add.sprite(10, 10, 'PlayerPistol');
         player1.anchor.setTo(0.5, 0.5);
 
         // enable physics for the player and set world bounds
         game.physics.enable(player1);
         player1.body.collideWorldBounds = true;
+
+        //----PlayerAnimation-----------------------------------
+
+        player1.animations.add('shoot', [0,1,2,3,4,0], 40, false);
 
         //----Enemy---------------------------------------------
         // Create an enemy group and add a physics body
@@ -303,6 +308,7 @@ function RestartGame() {
 function MouseFire() {
     if(game.time.now > nextFire)
     {
+        player1.animations.play('shoot');
         nextFire = game.time.now + fireRate;
         var bullet = bullets.getFirstDead();
         bullet.reset(player1.x, player1.y);
