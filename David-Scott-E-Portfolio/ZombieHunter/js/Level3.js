@@ -1,5 +1,5 @@
 var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
-    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies;
+    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife;
 
 
 zhgame.Level3 = function(){};
@@ -36,6 +36,8 @@ zhgame.Level3.prototype = {
         this.game.scale.refresh();
 
     },
+
+    //----CREATE FUNCTION----------------------------------------------------------------------------
     create: function(){
 
         // set game physics to arcade
@@ -99,7 +101,7 @@ zhgame.Level3.prototype = {
         //----Player--------------------------------------------
 
         // add the player to the centre of the screen with a centre anchor set
-        player1 = game.add.sprite(10, 10, 'PlayerPistol');
+        player1 = game.add.sprite(200, 200, 'PlayerPistol');
         player1.anchor.setTo(0.5, 0.5);
 
         // enable physics for the player and set world bounds
@@ -109,6 +111,33 @@ zhgame.Level3.prototype = {
         //----PlayerAnimation-----------------------------------
 
         player1.animations.add('shoot', [0,1,2,3,4,0], 40, false);
+
+        //----PlayerHealthBar-----------------------------------
+
+        bmd = this.game.add.bitmapData(300, 40);
+        bmd.ctx.beginPath();
+        bmd.ctx.rect(0, 0, 300, 80);
+        bmd.ctx.fillStyle = '#00685e';
+        bmd.ctx.fill();
+
+        bglife = this.game.add.sprite(200, 100, bmd);
+        bglife.anchor.set(0.5);
+
+        bmd = this.game.add.bitmapData(280, 30);
+        bmd.ctx.beginPath();
+        bmd.ctx.rect(0, 0, 300, 80);
+        bmd.ctx.fillStyle = '#00f910';
+        bmd.ctx.fill();
+
+        widthLife = new Phaser.Rectangle(0, 0, bmd.width, bmd.height);
+        totalLife = bmd.width;
+
+        this.life = this.game.add.sprite(200 - bglife.width/2 + 10, 100, bmd);
+        this.life.anchor.y = 0.5;
+        this.life.cropEnabled = true;
+        this.life.crop(widthLife);
+
+        //this.game.time.events.loop(0.0001, cropLife, this);
 
         //----Enemy---------------------------------------------
         // Create an enemy group and add a physics body
@@ -165,6 +194,20 @@ zhgame.Level3.prototype = {
         });
     },
 
+    // cropLife: function(){
+    //
+    //
+    //     if(this.widthLife.width <= 0){
+    //         this.widthLife.width = this.totalLife;
+    //
+    //     }
+    //     else{
+    //         console.log('dying');
+    //         this.game.add.tween(this.widthLife).to( { width: (this.widthLife.width - (this.totalLife / 100)) }, 200, Phaser.Easing.Linear.None, true);
+    //     }
+    // },
+
+    //----UPDATE FUNCTION----------------------------------------------------------------------------
     update: function(){
         // Player collision
         game.physics.arcade.collide(player1, rocks, function(){console.log('Hitting Rocks'); });
@@ -175,6 +218,10 @@ zhgame.Level3.prototype = {
         game.physics.arcade.collide(enemies, enemies);
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
+        bglife.x = game.camera.x + game.camera.width/2;
+        bglife.y = game.camera.y + 20;
+        this.life.x = game.camera.x + game.camera.width/2 - 140;
+        this.life.y = game.camera.y + 20;
 
         //virtual pad movement
         if(!Phaser.Device.desktop)
@@ -255,10 +302,13 @@ zhgame.Level3.prototype = {
             {
                 game.physics.arcade.moveToObject(enemy1,player1,0, null)
             }
-            game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this)
+            // game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this)
+            game.physics.arcade.overlap(enemy1, player1, cropLife, null, this)
         });
 
         game.physics.arcade.overlap(bullets, enemies, killZombie, null, this)
+
+        this.life.updateCrop();
 
     },
 
@@ -270,6 +320,19 @@ zhgame.Level3.prototype = {
     }
 
 };
+
+function cropLife(){
+
+
+    if(widthLife.width <= 0){
+        widthLife.width = totalLife;
+        RestartGame();
+    }
+    else{
+        console.log('dying');
+        game.add.tween(widthLife).to( { width: (widthLife.width - (totalLife / 20)) }, 200, Phaser.Easing.Linear.None, true);
+    }
+}
 
 function killZombie(bullet, enemy1) {
 
@@ -322,6 +385,7 @@ function MouseFire() {
 function GamepadFire(){
     if(game.time.now > nextFire)
     {
+        player1.animations.play('shoot');
         nextFire = game.time.now + fireRate;
         var bullet = bullets.getFirstDead();
         bullet.reset(player1.x, player1.y);
