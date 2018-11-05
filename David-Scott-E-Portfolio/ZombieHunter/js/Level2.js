@@ -15,13 +15,20 @@ zhgame.Level2.prototype = {
 
         AddChangeStateEventListeners();
 
-        var backgroud = game.add.tileSprite(0, 20, 1920, 1080, 'gameover');
+        //var screenWidth = document.getElementById("parentDiv").clientWidth;
+
+        var backgroud = game.add.tileSprite(550, 200, 1920, 1080, 'gameover');
+        backgroud.anchor.setTo(0.5,0.5);
+        //backgroud.x = centreX;
         backgroud.scale.x = 0.43;
         backgroud.scale.y = 0.43;
 
+
+
         if(!Phaser.Device.desktop)
         {
-            var mobileRestartMessage = game.add.tileSprite(0, 120, 1920, 1080, 'mobilerestart');
+            var mobileRestartMessage = game.add.tileSprite(550, 320, 1920, 1080, 'mobilerestart');
+            mobileRestartMessage.anchor.setTo(0.5, 0.5);
             mobileRestartMessage.scale.x = 0.43;
             mobileRestartMessage.scale.y = 0.43;
             mobileRestartMessage.alpha = 0;
@@ -31,7 +38,8 @@ zhgame.Level2.prototype = {
         }
         else {
 
-            var restartMessage = game.add.tileSprite(0, 120, 1920, 1080, 'restart');
+            var restartMessage = game.add.tileSprite(550, 320, 1920, 1080, 'restart');
+            restartMessage.anchor.setTo(0.5, 0.5);
             restartMessage.scale.x = 0.43;
             restartMessage.scale.y = 0.43;
             restartMessage.alpha = 0;

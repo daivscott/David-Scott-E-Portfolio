@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.CANVAS,  Phaser.AUTO); // can set how big camera view is here
+var game = new Phaser.Game(1100, 600, Phaser.CANVAS,  Phaser.AUTO); // can set how big camera view is here
 //var game = new Phaser.Game(1920, 1080, Phaser.AUTO);
 // const SAFE_ZONE_WIDTH=1200;const SAFE_ZONE_HEIGHT=900;
 // var game = new Phaser.Game( SAFE_ZONE_WIDTH, SAFE_ZONE_HEIGHT, Phaser.AUTO, 'game_div');

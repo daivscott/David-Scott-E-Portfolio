@@ -1,5 +1,5 @@
 var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
-    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife;
+    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath;
 
 
 zhgame.Level3 = function(){};
@@ -10,10 +10,12 @@ zhgame.Level3.prototype = {
 
         // reference the Player
         game.load.image('Player1', 'assets/sprites/PistolShoot2.png');
-        game.load.spritesheet('PlayerPistol', 'assets/sprites/PistolShoot.png', 70, 34, 5);
+        game.load.spritesheet('PlayerPistol', 'assets/sprites/PistolShoot.png', 69.5, 34, 5);
 
         // reference to zombie
-        game.load.image('Enemy1', 'assets/sprites/zombie1.png');
+        //game.load.image('Enemy1', 'assets/sprites/zombie1.png');
+        // game.load.spritesheet('Enemy1', 'assets/sprites/ZOMBIE_ALL.png', 60, 60, 30, 5, 6);
+        game.load.spritesheet('Enemy1', 'assets/sprites/ZOMBIE_ALL2.png', 60, 60);
 
         // reference the bullet
         game.load.image('bullet', 'assets/sprites/Bullet-1.png');
@@ -34,6 +36,7 @@ zhgame.Level3.prototype = {
         this.scale.pageAlignVertically = true;
         this.scale.pageAlignHorizontally = true;
         this.game.scale.refresh();
+        //game.scale.startFullScreen(true);
 
     },
 
@@ -85,6 +88,7 @@ zhgame.Level3.prototype = {
 
         //----Bullets-------------------------------------------
 
+        // add the bullet group, add physics, bounds, pivot, collision box and size
         bullets = game.add.group();
         bullets.enableBody = true;
         bullets.physicsBodyType = Phaser.Physics.ARCADE;
@@ -100,13 +104,16 @@ zhgame.Level3.prototype = {
 
         //----Player--------------------------------------------
 
-        // add the player to the centre of the screen with a centre anchor set
-        player1 = game.add.sprite(200, 200, 'PlayerPistol');
-        player1.anchor.setTo(0.5, 0.5);
+        // add the player set to pistol sprite
+        //player1 = game.add.sprite(200, 200, 'PlayerPistol');
+        player1 = game.add.sprite(200, 600, 'PlayerPistol');
 
-        // enable physics for the player and set world bounds
+
+        // enable physics for the player, set pivot, world bounds and collision box
         game.physics.enable(player1);
+        player1.anchor.setTo(0.2, 0.5);
         player1.body.collideWorldBounds = true;
+        player1.body.setSize(30, 30, 0, 3);
 
         //----PlayerAnimation-----------------------------------
 
@@ -114,10 +121,10 @@ zhgame.Level3.prototype = {
 
         //----PlayerHealthBar-----------------------------------
 
-        bmd = this.game.add.bitmapData(300, 40);
+        bmd = this.game.add.bitmapData(290, 36);
         bmd.ctx.beginPath();
         bmd.ctx.rect(0, 0, 300, 80);
-        bmd.ctx.fillStyle = '#00685e';
+        bmd.ctx.fillStyle = '#00473d';
         bmd.ctx.fill();
 
         bglife = this.game.add.sprite(200, 100, bmd);
@@ -150,9 +157,20 @@ zhgame.Level3.prototype = {
         {
             // Create an enemy in random location
             enemy1 = enemies.create(360 + Math.random() * 200, 120 + Math.random() * 200, 'Enemy1');
-            enemy1.anchor.setTo(0.5, 0.5);
+            enemy1.anchor.setTo(0.65, 0.4);
+            enemy1.scale.x = 1.5;
+            enemy1.scale.y = 1.5;
             enemy1.health = 3;
             enemy1.body.collideWorldBounds = true;
+            enemy1.body.setSize(20, 20, 32, 11);
+            enemy1.animations.add('walk', [0,1,2,3], 10, true);
+            enemy1.animations.add('grab', [4,5,6,7], 10, true);
+            enemy1.animations.add('shot', [8,9,10,11,12,13,14,15,16,17], 10, false);
+            enemy1.animations.add('die1', [18,19,20,21,22], 10, false);
+            enemy1.animations.add('die2', [23,24,25,26,27,28,29], 10, false);
+
+
+
         }
 
         //----Gamepad-------------------------------------------
@@ -161,15 +179,15 @@ zhgame.Level3.prototype = {
         // aligned to bottom left of the screen
         gamepad = game.plugins.add(Phaser.VirtualJoystick);
         stick = gamepad.addStick(0, 0, 200, 'generic');
-        stick.scale = 0.5;
-        stick.alignBottomLeft(50);
+        stick.scale = 0.7;
+        stick.alignBottomLeft(60);
 
         fireButton = gamepad.addButton(200, 200, 'generic', 'button1-up', 'button1-down');
 
         fireButton.onDown.add(GamepadFire);
         fireButton.repeatRate = 100;
 
-        fireButton.alignBottomRight(50);
+        fireButton.alignBottomRight(100);
 
         // create a boolean variable to toggle pad visibility
         padVisible = true;
@@ -192,6 +210,8 @@ zhgame.Level3.prototype = {
             // When the paus button is pressed, we pause the game
             game.paused = true;
         });
+
+
     },
 
     // cropLife: function(){
@@ -209,9 +229,12 @@ zhgame.Level3.prototype = {
 
     //----UPDATE FUNCTION----------------------------------------------------------------------------
     update: function(){
+
         // Player collision
         game.physics.arcade.collide(player1, rocks, function(){console.log('Hitting Rocks'); });
         game.physics.arcade.collide(player1, grass, function(){console.log('Hitting Wall'); });
+
+
         // Enemy collision
         game.physics.arcade.collide(enemies, rocks, function(){console.log('Hitting Rocks'); });
         game.physics.arcade.collide(enemies, grass, function(){console.log('Hitting Wall'); });
@@ -222,6 +245,7 @@ zhgame.Level3.prototype = {
         bglife.y = game.camera.y + 20;
         this.life.x = game.camera.x + game.camera.width/2 - 140;
         this.life.y = game.camera.y + 20;
+
 
         //virtual pad movement
         if(!Phaser.Device.desktop)
@@ -244,6 +268,14 @@ zhgame.Level3.prototype = {
                 if(player1.body.velocity.y > 200)
                 {
                     player1.body.velocity.y = 200;
+                }
+                if(player1.body.velocity.x < -200)
+                {
+                    player1.body.velocity.x = -200;
+                }
+                if(player1.body.velocity.y < -200)
+                {
+                    player1.body.velocity.y = -200;
                 }
                 // // remove movement physics
                 // player1.body.velocity.x = speed * stick.x;
@@ -295,8 +327,9 @@ zhgame.Level3.prototype = {
         enemies.forEach(function (enemy1) {
             if(game.physics.arcade.distanceBetween(enemy1, player1) < 300)
             {
+                enemy1.animations.play('walk');
                 game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null),
-                    enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y)
+                enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y)
             }
             else
             {
@@ -338,8 +371,19 @@ function killZombie(bullet, enemy1) {
 
     bullet.kill();
     enemy1.health--;
+
     if(enemy1.health < 1)
     {
+        game.physics.arcade.moveToObject(enemy1,player1,0, null)
+        animDeath = enemy1.animations.add('die1');
+        animDeath.onComplete.add(killZombie, this);
+        //enemy1.animations.play('die1');
+        //enemy1.kill();
+        // animDeath.onComplete.add(killZombie, this);
+        animDeath.play(true);
+    }
+
+    function killZombie(){
         enemy1.kill();
     }
 
@@ -375,7 +419,6 @@ function MouseFire() {
         nextFire = game.time.now + fireRate;
         var bullet = bullets.getFirstDead();
         bullet.reset(player1.x, player1.y);
-        //
 
         game.physics.arcade.moveToPointer(bullet, bulletSpeed);
         bullet.rotation = game.physics.arcade.angleToPointer(bullet);
