@@ -1,6 +1,6 @@
 var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
     bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath,
-    animHit, enemyDeathLoc, soul, soulAnim;
+    animHit, enemyDeathLoc, souls, soul, soulAnim;
 
 
 zhgame.Level3 = function(){};
@@ -148,6 +148,16 @@ zhgame.Level3.prototype = {
         this.life.cropEnabled = true;
         this.life.crop(widthLife);
 
+        // position the healthbar
+        bglife.x = game.camera.x + game.camera.width/2;
+        bglife.y = game.camera.y + 20;
+        this.life.x = game.camera.x + game.camera.width/2 - 140;
+        this.life.y = game.camera.y + 20;
+
+        // fix the position of healthbar relative to camera
+        bglife.fixedToCamera = true;
+        this.life.fixedToCamera = true;
+
         //this.game.time.events.loop(0.0001, cropLife, this);
 
         //----Enemy---------------------------------------------
@@ -176,6 +186,13 @@ zhgame.Level3.prototype = {
 
         //---SoulPickup-----------------------------------------
 
+        souls = game.add.group();
+        souls.enableBody = true;
+        souls.physicsBodyType = Phaser.Physics.ARCADE;
+        souls.createMultiple(50, 'Soul', 0, false);
+
+        //souls.callAll('animation.add', 'animations', 'pulse', [0, 1, 2, 3, 4, 5], 10, true);
+        //souls.callAll('animation.play', 'animations', 'pulse');
         // soul = game.add.sprite(200, 200, 'Soul', 1);
         // soulAnim = soul.animations.add('pulse');
         // soulAnim.play(10, true);
@@ -248,10 +265,10 @@ zhgame.Level3.prototype = {
         game.physics.arcade.collide(enemies, enemies);
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
-        bglife.x = game.camera.x + game.camera.width/2;
-        bglife.y = game.camera.y + 20;
-        this.life.x = game.camera.x + game.camera.width/2 - 140;
-        this.life.y = game.camera.y + 20;
+        //bglife.x = game.camera.x + game.camera.width/2;
+        //bglife.y = game.camera.y + 20;
+        // this.life.x = game.camera.x + game.camera.width/2 - 140;
+        // this.life.y = game.camera.y + 20;
 
 
         //virtual pad movement
@@ -348,7 +365,7 @@ zhgame.Level3.prototype = {
         });
 
         game.physics.arcade.overlap(bullets, enemies, killZombie, null, this);
-        game.physics.arcade.overlap(player1, soul, pickupSoul, null, this)
+        game.physics.arcade.overlap(player1, souls, pickupSoul, null, this)
 
         this.life.updateCrop();
 
@@ -356,6 +373,11 @@ zhgame.Level3.prototype = {
 
     render: function() {
         game.debug.text(game.time.fps, 780, 14, "#00ff00");
+        game.debug.text('Souls: ' + player1.souls, 600, 14);
+        //game.debug.geom(bglife);
+        //game.debug.geom(this.life);
+        //this.life.x = game.camera.x + game.camera.width/2 - 140;
+        //this.life.y = game.camera.y + 20;
         //game.debug.body(player1);
         //game.debug.physicsGroup(bullets);
         //game.debug.physicsGroup(enemies);
@@ -403,12 +425,12 @@ function killZombie(bullet, enemy1) {
     function killTheZombie(){
         enemyDeathLoc = enemy1;
         enemy1.kill();
-        soul = game.add.sprite(enemyDeathLoc.x, enemyDeathLoc.y, 'Soul', 1);
+        soul = souls.getFirstDead();
+        soul.reset(enemyDeathLoc.x, enemyDeathLoc.y);
+        //soul = game.add.sprite(enemyDeathLoc.x, enemyDeathLoc.y, 'Soul', 1);
         soul.scale.set(0.5);
-        soul.enableBody = true;
-        soul.physicsBodyType = Phaser.Physics.ARCADE;
-        soulAnim = soul.animations.add('pulse');
-        soulAnim.play(10, true);
+        soulAnim = soul.animations.add('pulse', [0,1,2,3,4,5], 10, true);
+        soulAnim.play();
     }
 
     function hitZombie(){
@@ -421,6 +443,7 @@ function killZombie(bullet, enemy1) {
 function pickupSoul(player1, soulAnim){
     console.log('hit soul');
     soulAnim.kill();
+    player1.souls++;
 }
 
 function createZombie() {
