@@ -1,5 +1,6 @@
 var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
-    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath;
+    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath,
+    animHit, enemyDeathLoc, soul, soulAnim;
 
 
 zhgame.Level3 = function(){};
@@ -28,6 +29,8 @@ zhgame.Level3.prototype = {
         game.load.tilemap('mountains', 'assets/tilemaps/mountains.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('mountain_landscape', 'assets/spritesheet/mountain_landscape.png');
 
+        // refernce to the soul pickup
+        game.load.spritesheet('Soul', 'assets/sprites/SoulPickup.png', 32, 32);
     },
     init: function(){
 
@@ -114,6 +117,7 @@ zhgame.Level3.prototype = {
         player1.anchor.setTo(0.2, 0.5);
         player1.body.collideWorldBounds = true;
         player1.body.setSize(30, 30, 0, 3);
+        player1.souls = 0;
 
         //----PlayerAnimation-----------------------------------
 
@@ -168,10 +172,13 @@ zhgame.Level3.prototype = {
             enemy1.animations.add('shot', [8,9,10,11,12,13,14,15,16,17], 10, false);
             enemy1.animations.add('die1', [18,19,20,21,22], 10, false);
             enemy1.animations.add('die2', [23,24,25,26,27,28,29], 10, false);
-
-
-
         }
+
+        //---SoulPickup-----------------------------------------
+
+        // soul = game.add.sprite(200, 200, 'Soul', 1);
+        // soulAnim = soul.animations.add('pulse');
+        // soulAnim.play(10, true);
 
         //----Gamepad-------------------------------------------
 
@@ -325,7 +332,7 @@ zhgame.Level3.prototype = {
 
 
         enemies.forEach(function (enemy1) {
-            if(game.physics.arcade.distanceBetween(enemy1, player1) < 300)
+            if((game.physics.arcade.distanceBetween(enemy1, player1) < 300)&&(enemy1.health>0))// and dead flag not triggered
             {
                 enemy1.animations.play('walk');
                 game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null),
@@ -333,13 +340,15 @@ zhgame.Level3.prototype = {
             }
             else
             {
+                enemy1.animations.stop('walk');
                 game.physics.arcade.moveToObject(enemy1,player1,0, null)
             }
             // game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this)
             game.physics.arcade.overlap(enemy1, player1, cropLife, null, this)
         });
 
-        game.physics.arcade.overlap(bullets, enemies, killZombie, null, this)
+        game.physics.arcade.overlap(bullets, enemies, killZombie, null, this);
+        game.physics.arcade.overlap(player1, soul, pickupSoul, null, this)
 
         this.life.updateCrop();
 
@@ -371,22 +380,47 @@ function killZombie(bullet, enemy1) {
 
     bullet.kill();
     enemy1.health--;
+    // enemy1.body.enable = false;
+
+    enemy1.animations.stop('walk');
+    animHit = enemy1.animations.add('shot', [8,9,10,11,12,13,14,15,16,17], 100, false);
+    animHit.onComplete.add(hitZombie, this);
+    animHit.play(true);
+
 
     if(enemy1.health < 1)
     {
-        game.physics.arcade.moveToObject(enemy1,player1,0, null)
-        animDeath = enemy1.animations.add('die1');
-        animDeath.onComplete.add(killZombie, this);
+        //game.physics.arcade.moveToObject(enemy1,player1,0, null);
+        enemy1.body.enable = false;
+        animDeath = enemy1.animations.add('die1',[18,19,20,21,22], 10, false);
+        animDeath.onComplete.add(killTheZombie, this);
         //enemy1.animations.play('die1');
         //enemy1.kill();
         // animDeath.onComplete.add(killZombie, this);
         animDeath.play(true);
     }
 
-    function killZombie(){
+    function killTheZombie(){
+        enemyDeathLoc = enemy1;
         enemy1.kill();
+        soul = game.add.sprite(enemyDeathLoc.x, enemyDeathLoc.y, 'Soul', 1);
+        soul.scale.set(0.5);
+        soul.enableBody = true;
+        soul.physicsBodyType = Phaser.Physics.ARCADE;
+        soulAnim = soul.animations.add('pulse');
+        soulAnim.play(10, true);
     }
 
+    function hitZombie(){
+        enemy1.body.enable = true;
+        game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null);
+    }
+
+}
+
+function pickupSoul(player1, soulAnim){
+    console.log('hit soul');
+    soulAnim.kill();
 }
 
 function createZombie() {
