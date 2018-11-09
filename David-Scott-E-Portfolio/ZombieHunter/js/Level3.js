@@ -1,6 +1,6 @@
 var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer, MountainLayer, GrassLayer,
     bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath,
-    animHit, enemyDeathLoc, souls, soul, soulAnim;
+    animHit, enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey, BlueKey, GreenKey, PinkKey, Health;
 
 
 zhgame.Level3 = function(){};
@@ -33,7 +33,24 @@ zhgame.Level3.prototype = {
 
         // refernce to the soul pickup
         game.load.spritesheet('Soul', 'assets/sprites/SoulPickup.png', 32, 32);
-    },
+
+        // reference to the machine gun
+        game.load.spritesheet('MachineGun', 'assets/sprites/MachineGun.png', 32, 32);
+
+        // reference to the shotgun
+        game.load.spritesheet('ShotGun', 'assets/sprites/ShotGun.png', 32, 32);
+
+        // reference to the keys
+        game.load.spritesheet('RedKey', 'assets/sprites/RedKey.png', 32, 32);
+        game.load.spritesheet('GoldKey', 'assets/sprites/GoldKey.png', 32, 32);
+        game.load.spritesheet('BlueKey', 'assets/sprites/BlueKey.png', 32, 32);
+        game.load.spritesheet('GreenKey', 'assets/sprites/GreenKey.png', 32, 32);
+        game.load.spritesheet('PinkKey', 'assets/sprites/PinkKey.png', 32, 32);
+
+        // reference to the health
+        game.load.spritesheet('Health', 'assets/sprites/Health.png', 32, 32);
+
+},
     init: function(){
 
         this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -152,6 +169,7 @@ zhgame.Level3.prototype = {
         player1.body.collideWorldBounds = true;
         player1.body.setSize(30, 30, 0, 3);
         player1.souls = 0;
+        player1.gun = 'pistol';
 
         //----PlayerAnimation-----------------------------------
 
@@ -225,11 +243,11 @@ zhgame.Level3.prototype = {
         souls.physicsBodyType = Phaser.Physics.ARCADE;
         souls.createMultiple(50, 'Soul', 0, false);
 
-        //souls.callAll('animation.add', 'animations', 'pulse', [0, 1, 2, 3, 4, 5], 10, true);
-        //souls.callAll('animation.play', 'animations', 'pulse');
-        // soul = game.add.sprite(200, 200, 'Soul', 1);
-        // soulAnim = soul.animations.add('pulse');
-        // soulAnim.play(10, true);
+        //---MachineGun-----------------------------------------
+
+        MachineGun = game.add.sprite(100, 500, 'MachineGun');
+        game.physics.arcade.enable(MachineGun);
+        MachineGun.enableBody = true;
 
         //----Gamepad-------------------------------------------
 
@@ -243,7 +261,7 @@ zhgame.Level3.prototype = {
         fireButton = gamepad.addButton(200, 200, 'generic', 'button1-up', 'button1-down');
 
         fireButton.onDown.add(GamepadFire);
-        fireButton.repeatRate = 100;
+        //fireButton.repeatRate = 100;
 
         fireButton.alignBottomRight(100);
 
@@ -268,6 +286,8 @@ zhgame.Level3.prototype = {
             // When the paus button is pressed, we pause the game
             game.paused = true;
         });
+
+        game.stage.smoothed = false;
 
 
     },
@@ -294,6 +314,11 @@ zhgame.Level3.prototype = {
         game.physics.arcade.collide(player1, TreesLayer, function(){console.log('Hitting Trees'); });
         game.physics.arcade.collide(player1, MountainLayer, function(){console.log('Hitting Mountain'); });
 
+        // Bullet collision
+        game.physics.arcade.collide(bullets, RocksLayer, function(bullet){bullet.kill();});
+        game.physics.arcade.collide(bullets, GrassLayer, function(bullet){bullet.kill();});
+        game.physics.arcade.collide(bullets, TreesLayer, function(bullet){bullet.kill();});
+        game.physics.arcade.collide(bullets, MountainLayer, function(bullet){bullet.kill();});
 
         // Enemy collision
         game.physics.arcade.collide(enemies, RocksLayer, function(){console.log('Hitting Rocks'); });
@@ -379,11 +404,32 @@ zhgame.Level3.prototype = {
             }
 
             // check for left mouse down and fire
-            if(game.input.activePointer.leftButton.isDown)
+            if((game.input.activePointer.leftButton.isDown) && (player1.gun === 'MachineGun'))
             {
                 MouseFire();
             }
+
+            if((game.input.activePointer.leftButton.justPressed()) && (player1.gun === 'pistol'))
+            {
+                fireRate = 300;
+                MouseFire();
+            }
+            else
+            {
+                fireRate = 200;
+            }
+
+
         }
+
+        // if(player1.gun == 'MachineGun')
+        // {
+        //     fireButton.repeatRate = 100;
+        // }
+        // else
+        // {
+        //     fireButton.repeatRate = 1;
+        // }
 
 
         enemies.forEach(function (enemy1) {
@@ -402,16 +448,18 @@ zhgame.Level3.prototype = {
             game.physics.arcade.overlap(enemy1, player1, cropLife, null, this)
         });
 
+        // collision checks
         game.physics.arcade.overlap(bullets, enemies, killZombie, null, this);
-        game.physics.arcade.overlap(player1, souls, pickupSoul, null, this)
-
+        game.physics.arcade.overlap(player1, souls, PickupSoul, null, this);
+        game.physics.arcade.overlap(player1, MachineGun, PickupMachineGun, null, this);
         this.life.updateCrop();
 
     },
 
     render: function() {
-        game.debug.text(game.time.fps, 780, 14, "#00ff00");
-        game.debug.text('Souls: ' + player1.souls, 600, 14);
+        game.debug.text(game.time.fps + ' FPS', 900, 14, "#00ff00");
+        game.debug.text('Souls: ' + player1.souls, 280, 14);
+        game.debug.text('Gun: ' + player1.gun, 750, 14);
         //game.debug.geom(bglife);
         //game.debug.geom(this.life);
         //this.life.x = game.camera.x + game.camera.width/2 - 140;
@@ -419,6 +467,7 @@ zhgame.Level3.prototype = {
         //game.debug.body(player1);
         //game.debug.physicsGroup(bullets);
         //game.debug.physicsGroup(enemies);
+        //game.debug.body(MachineGun);
     }
 
 };
@@ -478,10 +527,16 @@ function killZombie(bullet, enemy1) {
 
 }
 
-function pickupSoul(player1, soulAnim){
+function PickupSoul(player1, soulAnim){
     console.log('hit soul');
     soulAnim.kill();
     player1.souls++;
+}
+
+function PickupMachineGun(player1, MachineGun){
+    console.log('picked up shotgun');
+    player1.gun = 'MachineGun';
+    MachineGun.kill();
 }
 
 function createZombie() {
