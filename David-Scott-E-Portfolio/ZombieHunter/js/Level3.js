@@ -422,14 +422,14 @@ zhgame.Level3.prototype = {
 
         }
 
-        // if(player1.gun == 'MachineGun')
-        // {
-        //     fireButton.repeatRate = 100;
-        // }
-        // else
-        // {
-        //     fireButton.repeatRate = 1;
-        // }
+        if(player1.gun == 'MachineGun')
+        {
+            fireButton.repeatRate = 100;
+        }
+        else
+        {
+            fireButton.repeatRate = 5000;
+        }
 
 
         enemies.forEach(function (enemy1) {

@@ -37,8 +37,8 @@
       <file leaf-file-name="Level3.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="413" column="28" lean-forward="false" selection-start-line="413" selection-start-column="28" selection-end-line="413" selection-end-column="28" />
+            <state relative-caret-position="494">
+              <caret line="430" column="37" lean-forward="false" selection-start-line="430" selection-start-column="37" selection-end-line="430" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -268,12 +268,12 @@
       <workItem from="1540380757896" duration="51233000" />
       <workItem from="1541070906988" duration="11945000" />
       <workItem from="1541185991964" duration="15000" />
-      <workItem from="1541186053930" duration="106908000" />
+      <workItem from="1541186053930" duration="108651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="449927000" />
+    <option name="totallyTimeSpent" value="451670000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="888" y="50" width="1022" height="1032" extended-state="0" />
@@ -631,8 +631,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level3.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="413" column="28" lean-forward="false" selection-start-line="413" selection-start-column="28" selection-end-line="413" selection-end-column="28" />
+        <state relative-caret-position="494">
+          <caret line="430" column="37" lean-forward="false" selection-start-line="430" selection-start-column="37" selection-end-line="430" selection-end-column="37" />
           <folding />
         </state>
       </provider>
