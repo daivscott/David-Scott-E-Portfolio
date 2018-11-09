@@ -1,4 +1,4 @@
-var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, rocks, grass,
+var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer, MountainLayer, GrassLayer,
     bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath,
     animHit, enemyDeathLoc, souls, soul, soulAnim;
 
@@ -26,7 +26,9 @@ zhgame.Level3.prototype = {
         game.load.spritesheet('fullscreenBtn', 'assets/spritesheet/FullscreenButton_spritesheet.png', 193, 71);
 
         // reference the tilemap
-        game.load.tilemap('mountains', 'assets/tilemaps/mountains.json', null, Phaser.Tilemap.TILED_JSON);
+        // game.load.tilemap('mountains', 'assets/tilemaps/mountains.json', null, Phaser.Tilemap.TILED_JSON);
+        // game.load.image('mountain_landscape', 'assets/spritesheet/mountain_landscape.png');
+        game.load.tilemap('Level1', 'assets/tilemaps/Level1.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('mountain_landscape', 'assets/spritesheet/mountain_landscape.png');
 
         // refernce to the soul pickup
@@ -55,31 +57,63 @@ zhgame.Level3.prototype = {
         // execute event listeners
         AddChangeStateEventListeners();
 
-        // set world bounds and scale
-        game.world.setBounds(0, 0, 1600, 1600);
-
-
         //----TileMaps---------------------------------------------------
 
         // load the level tilemap
-        var map = game.add.tilemap('mountains');
+        map = game.add.tilemap('Level1');
 
         // load the tilemap image
-        map.addTilesetImage('mountain_landscape');
+        map.addTilesetImage('mountain_landscape', 'mountain_landscape');
+
+        var gameWidth = map.widthInPixels;
+        var gameHeight = map.heightInPixels;
+
+            // set world bounds and scale
+        game.world.setBounds(0, 0, gameWidth, gameHeight);
+
 
         // set the tilemap layers
-        grass = map.createLayer('grass');
-        rocks = map.createLayer('rocks');
+        GrassLayer = map.createLayer('GrassLayer');
+        MountainLayer = map.createLayer('MountainLayer');
+        TreesLayer = map.createLayer('TreesLayer');
+        RocksLayer = map.createLayer('RocksLayer');
 
-        // set the tilemap collisions
-        map.setCollision(15, true, 'grass');
-        map.setCollisionBetween(2, 5, true, 'rocks');
-        map.setCollisionBetween(17, 22, true, 'rocks');
-        map.setCollisionBetween(33, 38, true, 'rocks');
-        map.setCollisionBetween(49, 54, true, 'rocks');
-        map.setCollisionBetween(65, 70, true, 'rocks');
-        map.setCollisionBetween(81, 86, true, 'rocks');
-        map.setCollisionBetween(97, 102, true, 'rocks');
+
+        // set the tilemap collisions for Rocks
+        map.setCollisionBetween(203, 205, true, 'RocksLayer');
+        map.setCollisionBetween(219, 221, true, 'RocksLayer');
+        map.setCollisionBetween(235, 236, true, 'RocksLayer');
+        map.setCollisionBetween(251, 252, true, 'RocksLayer');
+
+        // set the tilemap collisions for Trees
+        map.setCollisionBetween(196, 198, true, 'TreesLayer');
+        map.setCollisionBetween(212, 214, true, 'TreesLayer');
+        map.setCollisionBetween(217, 218, true, 'TreesLayer');
+        map.setCollisionBetween(228, 234, true, 'TreesLayer');
+        map.setCollisionBetween(244, 250, true, 'TreesLayer');
+
+        // set the tilemap collisions for Mountains
+        map.setCollisionBetween(1, 4, true, 'MountainLayer');
+        map.setCollisionBetween(7, 9, true, 'MountainLayer');
+        map.setCollisionBetween(16, 25, true, 'MountainLayer');
+        map.setCollisionBetween(32, 41, true, 'MountainLayer');
+        map.setCollisionBetween(48, 57, true, 'MountainLayer');
+        map.setCollisionBetween(64, 73, true, 'MountainLayer');
+        map.setCollisionBetween(80, 89, true, 'MountainLayer');
+        map.setCollisionBetween(96, 105, true, 'MountainLayer');
+
+        map.setCollisionBetween(112, 115, true, 'MountainLayer');
+        map.setCollisionBetween(128, 131, true, 'MountainLayer');
+        map.setCollisionBetween(144, 147, true, 'MountainLayer');
+        map.setCollisionBetween(160, 163, true, 'MountainLayer');
+        map.setCollisionBetween(176, 179, true, 'MountainLayer');
+        map.setCollisionBetween(192, 195, true, 'MountainLayer');
+        map.setCollisionBetween(208, 211, true, 'MountainLayer');
+        map.setCollisionBetween(224, 227, true, 'MountainLayer');
+        map.setCollisionBetween(240, 243, true, 'MountainLayer');
+
+
+
 
         //----Buttons-------------------------------------------
 
@@ -255,13 +289,17 @@ zhgame.Level3.prototype = {
     update: function(){
 
         // Player collision
-        game.physics.arcade.collide(player1, rocks, function(){console.log('Hitting Rocks'); });
-        game.physics.arcade.collide(player1, grass, function(){console.log('Hitting Wall'); });
+        game.physics.arcade.collide(player1, RocksLayer, function(){console.log('Hitting Rocks'); });
+        game.physics.arcade.collide(player1, GrassLayer, function(){console.log('Hitting Grass'); });
+        game.physics.arcade.collide(player1, TreesLayer, function(){console.log('Hitting Trees'); });
+        game.physics.arcade.collide(player1, MountainLayer, function(){console.log('Hitting Mountain'); });
 
 
         // Enemy collision
-        game.physics.arcade.collide(enemies, rocks, function(){console.log('Hitting Rocks'); });
-        game.physics.arcade.collide(enemies, grass, function(){console.log('Hitting Wall'); });
+        game.physics.arcade.collide(enemies, RocksLayer, function(){console.log('Hitting Rocks'); });
+        game.physics.arcade.collide(enemies, GrassLayer, function(){console.log('Hitting Grass'); });
+        game.physics.arcade.collide(enemies, TreesLayer, function(){console.log('Hitting Trees'); });
+        game.physics.arcade.collide(enemies, MountainLayer, function(){console.log('Hitting Mountain'); });
         game.physics.arcade.collide(enemies, enemies);
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
