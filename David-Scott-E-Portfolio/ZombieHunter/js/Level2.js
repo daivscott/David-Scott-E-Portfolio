@@ -61,7 +61,7 @@ zhgame.Level2.prototype = {
     update: function(){
         if((game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))||(game.input.pointer1.isDown))
         {
-            game.state.start('Level3');
+            game.state.start('Level1');
         }
     }
 };

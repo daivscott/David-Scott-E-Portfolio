@@ -572,6 +572,18 @@ function MouseFire() {
 
         game.physics.arcade.moveToPointer(bullet, bulletSpeed);
         bullet.rotation = game.physics.arcade.angleToPointer(bullet);
+
+        bullet = bullets.getFirstDead();
+        bullet.reset(player1.x, player1.y);
+
+        game.physics.arcade.moveToPointer(bullet, bulletSpeed, Phaser.Pointer.y = Phaser.Pointer.y + 500);
+        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
+
+        bullet = bullets.getFirstDead();
+        bullet.reset(player1.x, player1.y);
+
+        game.physics.arcade.moveToPointer(bullet, bulletSpeed);
+        bullet.rotation = game.physics.arcade.angleToPointer(bullet);
     }
 }
 
