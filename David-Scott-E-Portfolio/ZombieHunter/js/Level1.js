@@ -1,6 +1,7 @@
-var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer, MountainLayer, GrassLayer,
-    bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath,
-    animHit, enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey, BlueKey, GreenKey, PinkKey, Health, weapon, bullet;
+var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer,
+    MountainLayer, GrassLayer, bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies,
+    bmd, bglife, animDeath, animHit, animGrab, enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey,
+    BlueKey, GreenKey, PinkKey, Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120;
 
 
 zhgame.Level1 = function(){};
@@ -49,6 +50,9 @@ zhgame.Level1.prototype = {
 
         // reference to the health
         game.load.spritesheet('Health', 'assets/sprites/Health.png', 32, 32);
+
+        // reference to the zombie spawn
+        game.load.spritesheet('Spawner', 'assets/sprites/ZombieSpawn.png', 60, 40);
 
     },
     init: function(){
@@ -131,11 +135,9 @@ zhgame.Level1.prototype = {
 
         //----Buttons-------------------------------------------
 
-        // create the button to change controls
-        //controllerButton = game.add.button(100, 100, 'controllerBtn', changeControls, this, 2, 1, 0);
+        // create the button to enter fullscreen
         fullscreenButton = game.add.button(100, 100, 'fullscreenBtn', changeFullscreen, this, 2, 1, 0);
-        // controllerButton.scale.setTo(0.8, 0.8);
-        // fullscreenButton.scale.setTo(0.8, 0.8);
+
 
         //----Bullets-------------------------------------------
 
@@ -156,8 +158,7 @@ zhgame.Level1.prototype = {
 
         //----Player--------------------------------------------
 
-        // add the player set to pistol sprite
-        //player1 = game.add.sprite(200, 200, 'PlayerPistol');
+        // Create an instance of the player
         player1 = game.add.sprite(200, 600, 'PlayerPistol');
 
 
@@ -175,21 +176,25 @@ zhgame.Level1.prototype = {
 
         //----PlayerHealthBar-----------------------------------
 
+        // Create healthbar border to show total health
         bmd = this.game.add.bitmapData(290, 36);
         bmd.ctx.beginPath();
         bmd.ctx.rect(0, 0, 300, 80);
         bmd.ctx.fillStyle = '#00473d';
         bmd.ctx.fill();
 
+        // Create an instance of the healthbar border
         bglife = this.game.add.sprite(200, 100, bmd);
         bglife.anchor.set(0.5);
 
+        // Create the healthbar life display
         bmd = this.game.add.bitmapData(280, 30);
         bmd.ctx.beginPath();
         bmd.ctx.rect(0, 0, 300, 80);
         bmd.ctx.fillStyle = '#00f910';
         bmd.ctx.fill();
 
+        // Create an instance of the healthbar life to show the health
         widthLife = new Phaser.Rectangle(0, 0, bmd.width, bmd.height);
         totalLife = bmd.width;
 
@@ -240,45 +245,83 @@ zhgame.Level1.prototype = {
         //  But the 'true' argument tells the weapon to track sprite rotation
         weapon.trackSprite(player1, 0, 0, true);
 
+        //--ZombieSpawner---------------------------------------
+
+        Spawn1 = game.add.sprite(750, 750, 'Spawner');
+        Spawn1.enableBody = false;
+        Spawn1.physicsBodyType = Phaser.Physics.ARCADE;
+        Spawn1.anchor.setTo(0.5, 0.5);
+
         //----Enemy---------------------------------------------
         // Create an enemy group and add a physics body
         enemies = game.add.group();
         enemies.enableBody = true;
         enemies.physicsBodyType = Phaser.Physics.ARCADE;
 
-        // Create some enemies
-        for (var i = 0; i < 20; i++)
-        {
-            // Create an enemy in random location
-            enemy1 = enemies.create(360 + Math.random() * 200, 120 + Math.random() * 200, 'Enemy1');
-            enemy1.anchor.setTo(0.65, 0.4);
+        enemies.createMultiple(200, 'Enemy1', 0, false);
+        enemies.forEach( function (enemy1){
+
+
+            enemy1.anchor.setTo(0.59, 0.49);
             enemy1.scale.x = 1.5;
             enemy1.scale.y = 1.5;
-            enemy1.health = 3;
             enemy1.body.collideWorldBounds = true;
-            enemy1.body.setSize(20, 20, 32, 11);
+            enemy1.body.setSize(20, 20, 24, 20);
             enemy1.animations.add('walk', [0,1,2,3], 10, true);
-            enemy1.animations.add('grab', [4,5,6,7], 10, true);
+            enemy1.animations.add('grab', [4,5,6,7], 30, true);
             enemy1.animations.add('shot', [8,9,10,11,12,13,14,15,16,17], 10, false);
             enemy1.animations.add('die1', [18,19,20,21,22], 10, false);
             enemy1.animations.add('die2', [23,24,25,26,27,28,29], 10, false);
-        }
+        }, this);
+
+        // // Create some enemies
+        // for (var i = 0; i < 20; i++)
+        // {
+        //     enemy1 = enemies.getFirstDead();
+        //     if (enemy1)
+        //     {
+        //         enemy1.reset(360 + Math.random() * 200, 120 + Math.random() * 200);
+        //         enemy1.health = 3;
+        //     }
+        //
+        //
+        //     // Create an enemy in random location
+        //     // enemy1 = enemies.create(360 + Math.random() * 200, 120 + Math.random() * 200, 'Enemy1');
+        //     // // // enemy1.anchor.setTo(0.65, 0.4);
+        //     // enemy1.anchor.setTo(0.59, 0.49);w
+        //     // enemy1.scale.x = 1.5;
+        //     // enemy1.scale.y = 1.5;
+        //     // // enemy1.health = 3;
+        //     // // enemy1.body.collideWorldBounds = true;
+        //     // // // enemy1.body.setSize(20, 20, 32, 11);
+        //     // enemy1.body.setSize(20, 20, 24, 20);
+        //     // // enemy1.animations.add('walk', [0,1,2,3], 10, true);
+        //     // // //enemy1.animations.add('walk', [0,1,2,3,4,5,6,7], 10, true);
+        //     // // enemy1.animations.add('grab', [4,5,6,7], 30, true);
+        //     // // enemy1.animations.add('shot', [8,9,10,11,12,13,14,15,16,17], 10, false);
+        //     // // enemy1.animations.add('die1', [18,19,20,21,22], 10, false);
+        //     // // enemy1.animations.add('die2', [23,24,25,26,27,28,29], 10, false);
+        // }
+
 
         //---SoulPickup-----------------------------------------
 
+        // Create a group of soul objects
         souls = game.add.group();
         souls.enableBody = true;
         souls.physicsBodyType = Phaser.Physics.ARCADE;
-        souls.createMultiple(50, 'Soul', 0, false);
+        souls.createMultiple(200, 'Soul', 0, false);
 
         //---MachineGun-----------------------------------------
 
+        // Create an instance of the MachineGun
         MachineGun = game.add.sprite(100, 500, 'MachineGun');
         game.physics.arcade.enable(MachineGun);
         MachineGun.enableBody = true;
 
         //---ShotGun-----------------------------------------
 
+        // Create an instance of the ShotGun
         ShotGun = game.add.sprite(100, 600, 'ShotGun');
         game.physics.arcade.enable(ShotGun);
         ShotGun.enableBody = true;
@@ -292,11 +335,13 @@ zhgame.Level1.prototype = {
         stick.scale = 0.7;
         stick.alignBottomLeft(60);
 
+        // Create an instance of the virtual gamepad fire button
         fireButton = gamepad.addButton(200, 200, 'generic', 'button1-up', 'button1-down');
 
+        // Set function to be called when pressed
         fireButton.onDown.add(GamepadFire);
-        //fireButton.repeatRate = 100;
 
+        // Align to the bottom right of the screen
         fireButton.alignBottomRight(100);
 
         // create a boolean variable to toggle pad visibility
@@ -323,21 +368,8 @@ zhgame.Level1.prototype = {
 
         game.stage.smoothed = false;
 
-
     },
 
-    // cropLife: function(){
-    //
-    //
-    //     if(this.widthLife.width <= 0){
-    //         this.widthLife.width = this.totalLife;
-    //
-    //     }
-    //     else{
-    //         console.log('dying');
-    //         this.game.add.tween(this.widthLife).to( { width: (this.widthLife.width - (this.totalLife / 100)) }, 200, Phaser.Easing.Linear.None, true);
-    //     }
-    // },
 
     //----UPDATE FUNCTION----------------------------------------------------------------------------
     update: function(){
@@ -362,10 +394,6 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(enemies, enemies);
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
-        //bglife.x = game.camera.x + game.camera.width/2;
-        //bglife.y = game.camera.y + 20;
-        // this.life.x = game.camera.x + game.camera.width/2 - 140;
-        // this.life.y = game.camera.y + 20;
 
 
         //virtual pad movement
@@ -380,8 +408,16 @@ zhgame.Level1.prototype = {
             if (stick.isDown)
             {
                 player1.rotation = stick.rotation;
+
+                // Movement with physics
                 player1.body.velocity.x += speed/50 * stick.x;
                 player1.body.velocity.y += speed/50 * stick.y;
+
+                // // Movement without physics (movement with physics needs turned off)
+                // player1.body.velocity.x = speed * stick.x;
+                // player1.body.velocity.y = speed * stick.y;
+
+                // Stop the playeracceleration getting above 200
                 if(player1.body.velocity.x > 200)
                 {
                     player1.body.velocity.x = 200;
@@ -398,9 +434,6 @@ zhgame.Level1.prototype = {
                 {
                     player1.body.velocity.y = -200;
                 }
-                // // remove movement physics
-                // player1.body.velocity.x = speed * stick.x;
-                // player1.body.velocity.y = speed * stick.y;
             }
             else{
                 player1.body.velocity.x = 0;
@@ -458,17 +491,15 @@ zhgame.Level1.prototype = {
             // Fire ShotGun
             if((game.input.activePointer.leftButton.justPressed()) && (player1.gun === 'ShotGun'))
             {
+                weapon.fireRate = 300;
 
-                //weapon.multiFire = true;
-                weapon.bulletAngleVariance = 20;
                 MouseFire();
             }
 
 
-            // reset the fired flag on buttons release
+            // reset the multiFire flag on buttons release
             if(game.input.activePointer.leftButton.justReleased())
             {
-                //weapon._hasFired = false;
                 weapon.multiFire = true;
             }
         }
@@ -482,22 +513,52 @@ zhgame.Level1.prototype = {
             fireButton.repeatRate = 5000;
         }
 
-        if(player1.gun === 'ShotGun')
-        {
-            fireButton.repeatRate = 100;
-        }
-        else
-        {
-            fireButton.repeatRate = 5000;
-        }
+        // if(player1.gun === 'ShotGun')
+        // {
+        //     fireButton.repeatRate = 5000;
+        // }
+        // else
+        // {
+        //     fireButton.repeatRate = 5000;
+        // }
 
-
-        enemies.forEach(function (enemy1) {
-            if((game.physics.arcade.distanceBetween(enemy1, player1) < 300)&&(enemy1.health>0))// and dead flag not triggered
+        if(game.physics.arcade.distanceBetween(Spawn1, player1) < 1000)
+        {
+            if(justSpawned < 1)
             {
-                enemy1.animations.play('walk');
-                game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null),
-                    enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y)
+                createZombie();
+                justSpawned = 60;
+            }
+
+            // //  Set-up a simple repeating timer
+            // game.time.events.repeat(Phaser.Timer.SECOND, 20, createZombie, this);
+        }
+
+        justSpawned--;
+
+        // Set the enemy movement and animations
+        enemies.forEach(function (enemy1) {
+            if((game.physics.arcade.distanceBetween(enemy1, player1) < 10000)&&(enemy1.health>0))// and dead flag not triggered
+            {
+
+                enemy1.play('walk');
+                game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null);
+                enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y);
+
+                if(game.physics.arcade.distanceBetween(enemy1, player1) < 20)
+                {
+                    //console.log('EnemyEating');
+                    // enemy1.animations.stop('walk');
+                    // enemy1.animations.add('grab', [4,5,6,7], 30, true);
+                    // enemy1.play('grab');
+                    game.physics.arcade.moveToObject(enemy1,player1,0, null);
+                }
+                else
+                {
+                    enemy1.play('walk');
+                    game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null);
+                }
+
             }
             else
             {
@@ -506,6 +567,8 @@ zhgame.Level1.prototype = {
             }
             // game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this)
             game.physics.arcade.overlap(enemy1, player1, cropLife, null, this)
+
+
         });
 
         // collision checks
@@ -519,17 +582,15 @@ zhgame.Level1.prototype = {
 
     render: function() {
         game.debug.text(game.time.fps + ' FPS', 900, 14, "#00ff00");
-        game.debug.text('fireLimit: ' + weapon.fireLimit, 250, 30);
+        game.debug.text('justSpawned: ' + justSpawned, 250, 30);
         game.debug.text('Souls: ' + player1.souls, 280, 14);
         game.debug.text('Gun: ' + player1.gun, 750, 14);
-        //game.debug.geom(bglife);
-        //game.debug.geom(this.life);
-        //this.life.x = game.camera.x + game.camera.width/2 - 140;
-        //this.life.y = game.camera.y + 20;
-        //game.debug.body(player1);
-        //game.debug.physicsGroup(bullets);
-        //game.debug.physicsGroup(enemies);
-        //game.debug.body(MachineGun);
+
+        // // Debug to view collision boxes
+        // game.debug.body(player1);
+        // game.debug.physicsGroup(bullets);
+        // game.debug.physicsGroup(enemies);
+        // game.debug.body(MachineGun);
     }
 
 };
@@ -612,11 +673,12 @@ function createZombie() {
     // Recycle using getFirstExists(false)
     // Notice that this method will not create new objects if there's no one
     // available, and it won't change size of this group.
-    var enemy = enemies.getFirstExists(false);
-
-    if (enemy)
+    enemy1 = enemies.getFirstDead();
+    if (enemy1)
     {
-        enemy.revive();
+        enemy1.reset(750,750);
+        enemy1.health = 3;
+        enemy1.body.immovable = false;
     }
 
 }
@@ -624,11 +686,6 @@ function createZombie() {
 function RestartGame() {
     game.state.start('Level2');
 }
-
-// function EnemyMove() {
-//     game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, 2000);
-//     enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y);
-// }
 
 function MouseFire() {
 
@@ -649,10 +706,14 @@ function MouseFire() {
         weapon.fire();
     }
 
-    weapon._hasFired = true;
-    if((weapon._hasFired) && (player1.gun === 'ShotGun'))
+    //weapon._hasFired = true;
+    if((!weapon._hasFired) && (player1.gun === 'ShotGun'))
     {
-        weapon.fire();
+        for(var i = 0; i < shotgunRounds; i++)
+        {
+            weapon.bulletAngleVariance = 20;
+            weapon.fire();
+        }
         player1.animations.play('shoot', 30, false);
 
     }
@@ -660,25 +721,53 @@ function MouseFire() {
 }
 
 function GamepadFire(){
-    if(game.time.now > nextFire)
+
+    // offset to fire from end of gun
+    weapon.trackOffset.x = 45;
+
+    if(player1.gun === 'MachineGun')
     {
-        player1.animations.play('shoot');
-        nextFire = game.time.now + fireRate;
-        var bullet = bullets.getFirstDead();
-        bullet.reset(player1.x, player1.y);
-
-        game.physics.arcade.velocityFromRotation(player1.rotation, bulletSpeed, bullet.body.velocity);
-        bullet.rotation = player1.rotation;
+        fireButton.repeatRate = 100;
+        weapon.fireLimit = 0;
+        weapon.bulletAngleVariance = 2;
+        weapon.multiFire = false;
+        weapon.fire();
+        player1.animations.play('shoot', 30, false);
     }
+
+    // Fire Pistol
+    if(player1.gun === 'pistol')
+    {
+        weapon.fireLimit = 0;
+        weapon.bulletAngleVariance = 0;
+        weapon.fireRate = 300;
+        weapon.fire();
+        player1.animations.play('shoot', 30, false);
+    }
+
+    // Fire ShotGun
+    if((player1.gun === 'ShotGun'))
+    {
+        fireButton.repeatRate = 5000;
+        weapon.fireLimit = 0;
+        weapon.multiFire = true;
+        for(var i = 0; i < shotgunRounds; i++)
+        {
+            weapon.bulletAngleVariance = 20;
+            weapon.fire();
+        }
+        // weapon.bulletAngleVariance = 20;
+        // weapon.fire();
+        // weapon.bulletAngleVariance = 20;
+        // weapon.fire();
+        player1.animations.play('shoot', 30, false);
+        weapon.fireRate = 300;
+        //weapon.multiFire = false;
+    }
+
+
+
 }
-
-
-
-// function changeControls () {
-//
-//     padVisible = !padVisible;
-//
-// }
 
 function changeFullscreen(){
     gofull();
