@@ -109,9 +109,9 @@ zhgame.Level1.prototype = {
         // set the tilemap collisions for Trees
         map.setCollisionBetween(196, 198, true, 'TreesLayer');
         map.setCollisionBetween(212, 214, true, 'TreesLayer');
-        map.setCollisionBetween(217, 218, true, 'TreesLayer');
-        map.setCollisionBetween(228, 234, true, 'TreesLayer');
-        map.setCollisionBetween(244, 250, true, 'TreesLayer');
+        map.setCollisionBetween(217, 219, true, 'TreesLayer');
+        map.setCollisionBetween(228, 235, true, 'TreesLayer');
+        map.setCollisionBetween(244, 251, true, 'TreesLayer');
 
         // set the tilemap collisions for Mountains
         map.setCollisionBetween(1, 4, true, 'MountainLayer');
@@ -219,7 +219,7 @@ zhgame.Level1.prototype = {
         //----Weapon--------------------------------------------
 
         //  Creates 30 bullets, using the 'bullet' graphic
-        weapon = game.add.weapon(10, 'bullet');
+        weapon = game.add.weapon(20, 'bullet');
 
         weapon.bullets.setAll('scale.x', 2);
         weapon.bullets.setAll('scale.y', 2);
@@ -248,7 +248,7 @@ zhgame.Level1.prototype = {
         //--ZombieSpawner---------------------------------------
 
         Spawn1 = game.add.sprite(750, 750, 'Spawner');
-        Spawn1.enableBody = false;
+        Spawn1.enableBody = true;
         Spawn1.physicsBodyType = Phaser.Physics.ARCADE;
         Spawn1.anchor.setTo(0.5, 0.5);
 
@@ -258,7 +258,7 @@ zhgame.Level1.prototype = {
         enemies.enableBody = true;
         enemies.physicsBodyType = Phaser.Physics.ARCADE;
 
-        enemies.createMultiple(200, 'Enemy1', 0, false);
+        enemies.createMultiple(50, 'Enemy1', 0, false);
         enemies.forEach( function (enemy1){
 
 
@@ -379,12 +379,16 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(player1, GrassLayer, function(){console.log('Hitting Grass'); });
         game.physics.arcade.collide(player1, TreesLayer, function(){console.log('Hitting Trees'); });
         game.physics.arcade.collide(player1, MountainLayer, function(){console.log('Hitting Mountain'); });
+        game.physics.arcade.overlap(player1, souls, PickupSoul, null, this);
+        game.physics.arcade.overlap(player1, MachineGun, PickupMachineGun, null, this);
+        game.physics.arcade.overlap(player1, ShotGun, PickupShotGun, null, this);
 
         // Bullet collision
         game.physics.arcade.collide(weapon.bullets, RocksLayer, function(bullet){bullet.kill();});
         game.physics.arcade.collide(weapon.bullets, GrassLayer, function(bullet){bullet.kill();});
         game.physics.arcade.collide(weapon.bullets, TreesLayer, function(bullet){bullet.kill();});
         game.physics.arcade.collide(weapon.bullets, MountainLayer, function(bullet){bullet.kill();});
+        game.physics.arcade.overlap(weapon.bullets, enemies, killZombie, null, this);
 
         // Enemy collision
         game.physics.arcade.collide(enemies, RocksLayer, function(){console.log('Hitting Rocks'); });
@@ -392,6 +396,11 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(enemies, TreesLayer, function(){console.log('Hitting Trees'); });
         game.physics.arcade.collide(enemies, MountainLayer, function(){console.log('Hitting Mountain'); });
         game.physics.arcade.collide(enemies, enemies);
+
+        // collision checks
+
+
+
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
 
@@ -504,6 +513,7 @@ zhgame.Level1.prototype = {
             }
         }
 
+        // set fire rate when machine gun is picked up
         if(player1.gun === 'MachineGun')
         {
             fireButton.repeatRate = 100;
@@ -513,69 +523,64 @@ zhgame.Level1.prototype = {
             fireButton.repeatRate = 5000;
         }
 
-        // if(player1.gun === 'ShotGun')
-        // {
-        //     fireButton.repeatRate = 5000;
-        // }
-        // else
-        // {
-        //     fireButton.repeatRate = 5000;
-        // }
 
-        if(game.physics.arcade.distanceBetween(Spawn1, player1) < 1000)
+
+
+        justSpawned--;
+
+        if(game.physics.arcade.distanceBetween(Spawn1, player1) < 10000)
         {
             if(justSpawned < 1)
             {
                 createZombie();
-                justSpawned = 60;
+                justSpawned = 10;
             }
 
             // //  Set-up a simple repeating timer
             // game.time.events.repeat(Phaser.Timer.SECOND, 20, createZombie, this);
         }
 
-        justSpawned--;
-
         // Set the enemy movement and animations
         enemies.forEach(function (enemy1) {
-            if((game.physics.arcade.distanceBetween(enemy1, player1) < 10000)&&(enemy1.health>0))// and dead flag not triggered
-            {
-
-                enemy1.play('walk');
-                game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null);
-                enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y);
-
-                if(game.physics.arcade.distanceBetween(enemy1, player1) < 20)
+            if(enemy1) {
+                if ((game.physics.arcade.distanceBetween(enemy1, player1) < 10000) && (enemy1.health > 0))// and dead flag not triggered
                 {
-                    //console.log('EnemyEating');
-                    // enemy1.animations.stop('walk');
-                    // enemy1.animations.add('grab', [4,5,6,7], 30, true);
-                    // enemy1.play('grab');
-                    game.physics.arcade.moveToObject(enemy1,player1,0, null);
-                }
-                else
-                {
+
+                    // currentX = enemy1.x;
+                    // currentY = enemy1.y;
+                    // if()
                     enemy1.play('walk');
-                    game.physics.arcade.moveToObject(enemy1,player1,enemySpeed, null);
-                }
+                    game.physics.arcade.moveToObject(enemy1, player1, enemySpeed, null);
+                    enemy1.rotation = game.physics.arcade.angleToXY(enemy1, player1.x, player1.y);
 
-            }
-            else
-            {
-                enemy1.animations.stop('walk');
-                game.physics.arcade.moveToObject(enemy1,player1,0, null)
+
+                    if (game.physics.arcade.distanceBetween(enemy1, player1) < 20) {
+                        //console.log('EnemyEating');
+                        // enemy1.animations.stop('walk');
+                        // enemy1.animations.add('grab', [4,5,6,7], 30, true);
+                        //enemy1.play('grab');
+                        game.physics.arcade.moveToObject(enemy1, player1, 0, null);
+                    }
+                    else {
+                        enemy1.play('walk');
+                        game.physics.arcade.moveToObject(enemy1, player1, enemySpeed, null);
+                    }
+
+                }
+                else {
+                    enemy1.animations.stop('walk');
+                    game.physics.arcade.moveToObject(enemy1, player1, 0, null)
+                }
             }
             // game.physics.arcade.overlap(enemy1, player1, RestartGame, null, this)
             game.physics.arcade.overlap(enemy1, player1, cropLife, null, this)
 
 
+
         });
 
-        // collision checks
-        game.physics.arcade.overlap(weapon.bullets, enemies, killZombie, null, this);
-        game.physics.arcade.overlap(player1, souls, PickupSoul, null, this);
-        game.physics.arcade.overlap(player1, MachineGun, PickupMachineGun, null, this);
-        game.physics.arcade.overlap(player1, ShotGun, PickupShotGun, null, this);
+
+
         this.life.updateCrop();
 
     },
@@ -585,6 +590,7 @@ zhgame.Level1.prototype = {
         game.debug.text('justSpawned: ' + justSpawned, 250, 30);
         game.debug.text('Souls: ' + player1.souls, 280, 14);
         game.debug.text('Gun: ' + player1.gun, 750, 14);
+       //game.renderSettings.enableScrollDelta = false;
 
         // // Debug to view collision boxes
         // game.debug.body(player1);
@@ -594,6 +600,7 @@ zhgame.Level1.prototype = {
     }
 
 };
+
 
 function cropLife(){
 
@@ -612,7 +619,7 @@ function killZombie(bullet, enemy1) {
 
     bullet.kill();
     enemy1.health--;
-    // enemy1.body.enable = false;
+    //enemy1.body.enable = false;
 
     enemy1.animations.stop('walk');
     animHit = enemy1.animations.add('shot', [8,9,10,11,12,13,14,15,16,17], 100, false);
@@ -676,9 +683,12 @@ function createZombie() {
     enemy1 = enemies.getFirstDead();
     if (enemy1)
     {
-        enemy1.reset(750,750);
+        enemy1.body.enable = true;
+        enemy1.reset(game.world.randomX, game.world.randomY);
         enemy1.health = 3;
         enemy1.body.immovable = false;
+        enemy1.spawnlocationX = enemy1.x;
+        enemy1.spawnlocationY = enemy1.y;
     }
 
 }
