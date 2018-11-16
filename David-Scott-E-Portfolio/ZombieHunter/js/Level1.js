@@ -2,7 +2,7 @@ var zhgame = {}, centreX = 1100/2, centreY = 600/2, player1, enemy1, speed = 200
     MountainLayer, GrassLayer, bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies,
     bmd, bglife, animDeath, animHit, animGrab, enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey,
     BlueKey, GreenKey, PinkKey, Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120,
-    healthLocationX, healthLocationY, healthCount;
+    healthLocationX, healthLocationY, healthCount, GreenDoor;
 
 
 zhgame.Level1 = function(){};
@@ -48,6 +48,13 @@ zhgame.Level1.prototype = {
         game.load.spritesheet('BlueKey', 'assets/sprites/BlueKey.png', 32, 32);
         game.load.spritesheet('GreenKey', 'assets/sprites/GreenKey.png', 32, 32);
         game.load.spritesheet('PinkKey', 'assets/sprites/PinkKey.png', 32, 32);
+
+        // reference to the doors
+        game.load.spritesheet('RedDoor', 'assets/sprites/RedDoor.png', 100, 32);
+        game.load.spritesheet('GoldDoor', 'assets/sprites/GoldDoor.png', 100, 32);
+        game.load.spritesheet('BlueDoor', 'assets/sprites/BlueDoor.png', 100, 32);
+        game.load.spritesheet('GreenDoor', 'assets/sprites/GreenDoor.png', 100, 32);
+        game.load.spritesheet('PinkDoor', 'assets/sprites/PinkDoor.png', 100, 32);
 
         // reference to the health
         game.load.spritesheet('Health', 'assets/sprites/Health.png', 32, 32);
@@ -134,6 +141,30 @@ zhgame.Level1.prototype = {
         map.setCollisionBetween(224, 227, true, 'MountainLayer');
         map.setCollisionBetween(240, 243, true, 'MountainLayer');
 
+        //----Doors---------------------------------------------
+
+        GreenDoor = game.add.sprite(557, 530, 'GreenDoor');
+        game.physics.arcade.enable(GreenDoor);
+        GreenDoor.enableBody = true;
+        // GreenDoor.physicsBodyType = Phaser.Physics.ARCADE;
+        GreenDoor.anchor.setTo(0.5, 0.5);
+        GreenDoor.animations.add('flash', [0,1,2,3,4,3,2,1], 7, true);
+        GreenDoor.animations.play('flash');
+        GreenDoor.name = 'GreenDoor';
+        GreenDoor.body.immovable = true;
+
+        //----Keys----------------------------------------------
+
+        GreenKey = game.add.sprite(3034, 600, 'GreenKey');
+        game.physics.arcade.enable(GreenKey);
+        GreenKey.enableBody = true;
+        // GreenDoor.physicsBodyType = Phaser.Physics.ARCADE;
+        GreenKey.anchor.setTo(0.5, 0.5);
+        GreenKey.animations.add('flash', [0,1,2,3,4,3,2,1], 14, true);
+        GreenKey.animations.play('flash');
+        GreenKey.name = 'GreenKey';
+        GreenKey.body.immovable = true;
+
         //----Buttons-------------------------------------------
 
         // create the button to enter fullscreen
@@ -169,6 +200,11 @@ zhgame.Level1.prototype = {
         player1.body.setSize(30, 30, 0, 3);
         player1.souls = 0;
         player1.gun = 'pistol';
+        player1.greenKey = false;
+        player1.greenKey = false;
+        player1.greenKey = false;
+        player1.greenKey = false;
+        player1.greenKey = false;
 
         //----PlayerAnimation-----------------------------------
 
@@ -272,8 +308,8 @@ zhgame.Level1.prototype = {
         enemies.enableBody = true;
         enemies.physicsBodyType = Phaser.Physics.ARCADE;
 
-        // create a set number of enemies in the group and set attributs
-        enemies.createMultiple(100, 'Enemy1', 0, false);
+        // create a set number of enemies in the group and set attributes
+        enemies.createMultiple(50, 'Enemy1', 0, false);
         enemies.forEach( function (enemy1){
             enemy1.anchor.setTo(0.59, 0.49);
             enemy1.scale.x = 1.5;
@@ -328,15 +364,19 @@ zhgame.Level1.prototype = {
         //---MachineGun-----------------------------------------
 
         // Create an instance of the MachineGun
-        MachineGun = game.add.sprite(100, 500, 'MachineGun');
+        MachineGun = game.add.sprite(750, 1270, 'MachineGun');
         game.physics.arcade.enable(MachineGun);
+        MachineGun.animations.add('bounce', [0,1,2,3,4,5,5,4,3,2,1], 24, true);
+        MachineGun.play('bounce');
         MachineGun.enableBody = true;
 
         //---ShotGun-----------------------------------------
 
         // Create an instance of the ShotGun
-        ShotGun = game.add.sprite(100, 600, 'ShotGun');
+        ShotGun = game.add.sprite(300, 3034, 'ShotGun');
         game.physics.arcade.enable(ShotGun);
+        ShotGun.animations.add('bounce', [0,1,2,3,4,5,5,4,3,2,1], 24, true);
+        ShotGun.play('bounce');
         ShotGun.enableBody = true;
 
         //----Gamepad-------------------------------------------
@@ -389,12 +429,7 @@ zhgame.Level1.prototype = {
 
     //----UPDATE FUNCTION----------------------------------------------------------------------------
     update: function(){
-        // // Place health
-        // if(healthCount < 4)
-        // {
-        //     createHealth();
-        //     console.log('load health ' + lifePickups.healthCount);
-        // }
+
 
         // Player collision
         game.physics.arcade.collide(player1, RocksLayer, function(){console.log(/*'Hitting Rocks'*/); });
@@ -420,9 +455,13 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(enemies, MountainLayer, function(){console.log(/*'Hitting Mountain'*/); });
         game.physics.arcade.collide(enemies, enemies);
 
-        // Health collision
+        // Door collision
+        game.physics.arcade.overlap(player1, GreenDoor, OpenDoor, null, this);
+        game.physics.arcade.collide(GreenDoor, player1, function(){/*console.log('Hitting Door');*/ });
+        game.physics.arcade.collide(enemies, GreenDoor, function(){/*console.log('Hitting Door');*/ });
 
-
+        // Key collision
+        game.physics.arcade.overlap(player1, GreenKey, PickupKey, null, this);
 
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
@@ -624,6 +663,21 @@ zhgame.Level1.prototype = {
 
 };
 
+function OpenDoor(player, door) {
+    if((door.name === 'GreenDoor') && (player1.greenKey))
+    {
+        door.kill();
+    }
+}
+
+function PickupKey(player, key) {
+
+    if(key.name === 'GreenKey')
+    {
+        player.greenKey = true;
+    }
+    key.kill();
+}
 
 function cropLife(){
 
@@ -682,12 +736,16 @@ function killZombie(bullet, enemy1) {
 
 function PickupHealth(){
     console.log('health picked up');
-    health.kill();
-    widthLife.width = totalLife;
-    if(healthCount < 4)
+    if(widthLife.width < totalLife)
     {
-        createHealth();
+        health.kill();
+        widthLife.width = totalLife;
+        if(healthCount < 4)
+        {
+            createHealth();
+        }
     }
+
 
 }
 
