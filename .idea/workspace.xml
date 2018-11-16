@@ -17,8 +17,18 @@
       <file leaf-file-name="ZHGame.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="272">
               <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -27,7 +37,7 @@
       <file leaf-file-name="Level3.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
+            <state relative-caret-position="1042">
               <caret line="578" column="78" lean-forward="false" selection-start-line="578" selection-start-column="78" selection-end-line="578" selection-end-column="78" />
               <folding />
             </state>
@@ -37,15 +47,15 @@
       <file leaf-file-name="Level1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="113" column="40" lean-forward="false" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
+            <state relative-caret-position="192">
+              <caret line="275" column="34" lean-forward="false" selection-start-line="275" selection-start-column="34" selection-end-line="275" selection-end-column="34" />
               <folding>
                 <element signature="n#!!block;n#cropLife#0" expanded="false" />
-                <element signature="n#!!block;n#killTheZombie#0;n#!!block;n#killZombie#0" expanded="false" />
                 <element signature="n#!!block;n#hitZombie#0;n#!!block;n#killZombie#0" expanded="false" />
                 <element signature="n#!!block;n#PickupSoul#0" expanded="false" />
                 <element signature="n#!!block;n#PickupMachineGun#0" expanded="false" />
                 <element signature="n#!!block;n#PickupShotGun#0" expanded="false" />
+                <element signature="n#!!block;n#createZombie#0" expanded="false" />
                 <element signature="n#!!block;n#RestartGame#0" expanded="false" />
                 <element signature="n#!!block;n#MouseFire#0" expanded="false" />
                 <element signature="n#!!block;n#GamepadFire#0" expanded="false" />
@@ -99,16 +109,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index5.html" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/Lab Files - Week 5/index5.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index6.html" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/Lab Files - Week 5/index6.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -144,10 +144,11 @@
     <findStrings>
       <find>level0</find>
       <find>console</find>
-      <find>Gamepad</find>
       <find>_hasFired</find>
       <find>GamepadFire</find>
       <find>repeatRate</find>
+      <find>Gamepad</find>
+      <find>createHealth</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,14 +220,13 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="935" />
-    <option name="y" value="9" />
-    <option name="width" value="998" />
+    <option name="x" value="770" />
+    <option name="width" value="1105" />
     <option name="height" value="1029" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -239,7 +239,39 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="ZombieHunter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="ZombieHunter" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -326,19 +358,19 @@
       <workItem from="1540380757896" duration="51233000" />
       <workItem from="1541070906988" duration="11945000" />
       <workItem from="1541185991964" duration="15000" />
-      <workItem from="1541186053930" duration="210768000" />
+      <workItem from="1541186053930" duration="233621000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="553787000" />
+    <option name="totallyTimeSpent" value="576640000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="935" y="9" width="998" height="1029" extended-state="0" />
+    <frame x="770" y="0" width="1105" height="1029" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.04934542" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1808999" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -385,7 +417,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -612,34 +644,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="63" column="36" lean-forward="false" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="578" column="78" lean-forward="false" selection-start-line="578" selection-start-column="78" selection-end-line="578" selection-end-column="78" />
           <folding />
         </state>
       </provider>
@@ -700,17 +708,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1042">
+          <caret line="578" column="78" lean-forward="false" selection-start-line="578" selection-start-column="78" selection-end-line="578" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHGame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="113" column="40" lean-forward="false" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
+        <state relative-caret-position="192">
+          <caret line="275" column="34" lean-forward="false" selection-start-line="275" selection-start-column="34" selection-end-line="275" selection-end-column="34" />
           <folding>
             <element signature="n#!!block;n#cropLife#0" expanded="false" />
-            <element signature="n#!!block;n#killTheZombie#0;n#!!block;n#killZombie#0" expanded="false" />
             <element signature="n#!!block;n#hitZombie#0;n#!!block;n#killZombie#0" expanded="false" />
             <element signature="n#!!block;n#PickupSoul#0" expanded="false" />
             <element signature="n#!!block;n#PickupMachineGun#0" expanded="false" />
             <element signature="n#!!block;n#PickupShotGun#0" expanded="false" />
+            <element signature="n#!!block;n#createZombie#0" expanded="false" />
             <element signature="n#!!block;n#RestartGame#0" expanded="false" />
             <element signature="n#!!block;n#MouseFire#0" expanded="false" />
             <element signature="n#!!block;n#GamepadFire#0" expanded="false" />

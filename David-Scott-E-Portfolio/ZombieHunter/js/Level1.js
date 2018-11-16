@@ -1,7 +1,8 @@
-var zhgame = {}, centreX = 800/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer,
+var zhgame = {}, centreX = 1100/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer,
     MountainLayer, GrassLayer, bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies,
     bmd, bglife, animDeath, animHit, animGrab, enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey,
-    BlueKey, GreenKey, PinkKey, Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120;
+    BlueKey, GreenKey, PinkKey, Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120,
+    healthLocationX, healthLocationY, healthCount;
 
 
 zhgame.Level1 = function(){};
@@ -161,7 +162,6 @@ zhgame.Level1.prototype = {
         // Create an instance of the player
         player1 = game.add.sprite(200, 600, 'PlayerPistol');
 
-
         // enable physics for the player, set pivot, world bounds and collision box
         game.physics.enable(player1);
         player1.anchor.setTo(0.2, 0.5);
@@ -213,8 +213,24 @@ zhgame.Level1.prototype = {
         bglife.fixedToCamera = true;
         this.life.fixedToCamera = true;
 
-        //this.game.time.events.loop(0.0001, cropLife, this);
+        //----Health--------------------------------------------
 
+        // variable for healt count
+        healthCount = 0;
+
+        // Create an enemy group and add a physics body
+        lifePickups = game.add.group();
+        lifePickups.enableBody = true;
+        lifePickups.physicsBodyType = Phaser.Physics.ARCADE;
+
+        lifePickups.createMultiple(4, 'Health', 0, false);
+        lifePickups.forEach( function (health) {
+
+            //health.healthCount = 0;
+            health.animations.add('bounce', [0,1,2,3,4,5], 14, true);
+            health.play('bounce');
+
+        }, this);
 
         //----Weapon--------------------------------------------
 
@@ -238,8 +254,6 @@ zhgame.Level1.prototype = {
 
         weapon.multiFire = false;
 
-
-
         //  Tell the Weapon to track the 'player' Sprite
         //  With no offsets from the position
         //  But the 'true' argument tells the weapon to track sprite rotation
@@ -258,10 +272,9 @@ zhgame.Level1.prototype = {
         enemies.enableBody = true;
         enemies.physicsBodyType = Phaser.Physics.ARCADE;
 
-        enemies.createMultiple(50, 'Enemy1', 0, false);
+        // create a set number of enemies in the group and set attributs
+        enemies.createMultiple(100, 'Enemy1', 0, false);
         enemies.forEach( function (enemy1){
-
-
             enemy1.anchor.setTo(0.59, 0.49);
             enemy1.scale.x = 1.5;
             enemy1.scale.y = 1.5;
@@ -351,7 +364,7 @@ zhgame.Level1.prototype = {
 
         // set the camera to follow the player with a deadzone
         game.camera.follow(player1);
-        game.camera.deadzone = new Phaser.Rectangle(centreX - 100, centreY - 100, 200, 200);
+        game.camera.deadzone = new Phaser.Rectangle(centreX - 200, centreY - 70,  400,  140);
 
         // game.input.onDown.add(gofull, this);
 
@@ -368,20 +381,30 @@ zhgame.Level1.prototype = {
 
         game.stage.smoothed = false;
 
+        createHealth();
     },
+
+
 
 
     //----UPDATE FUNCTION----------------------------------------------------------------------------
     update: function(){
+        // // Place health
+        // if(healthCount < 4)
+        // {
+        //     createHealth();
+        //     console.log('load health ' + lifePickups.healthCount);
+        // }
 
         // Player collision
-        game.physics.arcade.collide(player1, RocksLayer, function(){console.log('Hitting Rocks'); });
-        game.physics.arcade.collide(player1, GrassLayer, function(){console.log('Hitting Grass'); });
-        game.physics.arcade.collide(player1, TreesLayer, function(){console.log('Hitting Trees'); });
-        game.physics.arcade.collide(player1, MountainLayer, function(){console.log('Hitting Mountain'); });
+        game.physics.arcade.collide(player1, RocksLayer, function(){console.log(/*'Hitting Rocks'*/); });
+        game.physics.arcade.collide(player1, GrassLayer, function(){console.log(/*'Hitting Grass'*/); });
+        game.physics.arcade.collide(player1, TreesLayer, function(){console.log(/*'Hitting Trees'*/); });
+        game.physics.arcade.collide(player1, MountainLayer, function(){console.log(/*'Hitting Mountain'*/); });
         game.physics.arcade.overlap(player1, souls, PickupSoul, null, this);
         game.physics.arcade.overlap(player1, MachineGun, PickupMachineGun, null, this);
         game.physics.arcade.overlap(player1, ShotGun, PickupShotGun, null, this);
+        game.physics.arcade.overlap(player1, health, PickupHealth, null, this);
 
         // Bullet collision
         game.physics.arcade.collide(weapon.bullets, RocksLayer, function(bullet){bullet.kill();});
@@ -391,13 +414,13 @@ zhgame.Level1.prototype = {
         game.physics.arcade.overlap(weapon.bullets, enemies, killZombie, null, this);
 
         // Enemy collision
-        game.physics.arcade.collide(enemies, RocksLayer, function(){console.log('Hitting Rocks'); });
-        game.physics.arcade.collide(enemies, GrassLayer, function(){console.log('Hitting Grass'); });
-        game.physics.arcade.collide(enemies, TreesLayer, function(){console.log('Hitting Trees'); });
-        game.physics.arcade.collide(enemies, MountainLayer, function(){console.log('Hitting Mountain'); });
+        game.physics.arcade.collide(enemies, RocksLayer, function(){console.log(/*'Hitting Rocks'*/); });
+        game.physics.arcade.collide(enemies, GrassLayer, function(){console.log(/*'Hitting Grass'*/); });
+        game.physics.arcade.collide(enemies, TreesLayer, function(){console.log(/*'Hitting Trees'*/); });
+        game.physics.arcade.collide(enemies, MountainLayer, function(){console.log(/*'Hitting Mountain'*/); });
         game.physics.arcade.collide(enemies, enemies);
 
-        // collision checks
+        // Health collision
 
 
 
@@ -657,6 +680,17 @@ function killZombie(bullet, enemy1) {
 
 }
 
+function PickupHealth(){
+    console.log('health picked up');
+    health.kill();
+    widthLife.width = totalLife;
+    if(healthCount < 4)
+    {
+        createHealth();
+    }
+
+}
+
 function PickupSoul(player1, soulAnim){
     console.log('hit soul');
     soulAnim.kill();
@@ -690,6 +724,48 @@ function createZombie() {
         enemy1.spawnlocationX = enemy1.x;
         enemy1.spawnlocationY = enemy1.y;
     }
+
+}
+
+function createHealth() {
+
+    if(healthCount === 0)
+    {
+        healthLocationX = 200;
+        healthLocationY = 200;
+        healthCount = 1;
+    }
+    else if(healthCount === 1)
+    {
+        healthLocationX = 3034;
+        healthLocationY = 200;
+        healthCount = 2;
+    }
+    else if(healthCount === 2)
+    {
+        healthLocationX = 200;
+        healthLocationY = 3034;
+        healthCount = 3;
+    }
+    else if(healthCount === 3)
+    {
+        healthLocationX = 3034;
+        healthLocationY = 3034;
+        healthCount = 4;
+    }
+
+    // Recycle using getFirstExists(false)
+    // Notice that this method will not create new objects if there's none
+    // available, and it won't change size of this group.
+    health = lifePickups.getFirstDead();
+    console.log('health created');
+    health.reset(healthLocationX, healthLocationY);
+    // lifePickups = health.animations.add('bounce', [0,1,2,3,4,5], 14, true);
+    // lifePickups.play('bounce');
+    health.body.enable = true;
+    //health.body.immovable = true;
+
+
 
 }
 
