@@ -1,8 +1,10 @@
 var zhgame = {}, centreX = 1100/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer,
-    MountainLayer, GrassLayer, bullets, bulletSpeed = 1000, nextFire = 0, fireRate = 200, enemySpeed = 120, enemies,
-    bmd, bglife, animDeath, animHit, animGrab, enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey,
-    BlueKey, GreenKey, PinkKey, Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120,
-    healthLocationX, healthLocationY, healthCount, GreenDoor;
+    TreesLayer2, AscensionLayer, AscensionLayer2, MountainLayer, GrassLayer, bullets, bulletSpeed = 1000,
+    nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath, animHit, animGrab,
+    enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey, BlueKey, GreenKey, PinkKey,
+    Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120, healthLocationX,
+    healthLocationY, healthCount, GreenDoorHor, GreenDoorVert, BlueDoorHor, BlueDoorVert, PinkDoorHor,
+    PinkDoorVert, RedDoorHor, RedDoorVert, GoldDoorHor, GoldDoorVert, TestKey, AscensionMsg;
 
 
 zhgame.Level1 = function(){};
@@ -50,11 +52,11 @@ zhgame.Level1.prototype = {
         game.load.spritesheet('PinkKey', 'assets/sprites/PinkKey.png', 32, 32);
 
         // reference to the doors
-        game.load.spritesheet('RedDoor', 'assets/sprites/RedDoor.png', 100, 32);
-        game.load.spritesheet('GoldDoor', 'assets/sprites/GoldDoor.png', 100, 32);
-        game.load.spritesheet('BlueDoor', 'assets/sprites/BlueDoor.png', 100, 32);
-        game.load.spritesheet('GreenDoor', 'assets/sprites/GreenDoor.png', 100, 32);
-        game.load.spritesheet('PinkDoor', 'assets/sprites/PinkDoor.png', 100, 32);
+        game.load.spritesheet('RedDoorHor', 'assets/sprites/RedDoorHor.png', 100, 60);
+        game.load.spritesheet('GoldDoorHor', 'assets/sprites/GoldDoorHor.png', 100, 60);
+        game.load.spritesheet('BlueDoorVert', 'assets/sprites/BlueDoorVert.png', 100, 40);
+        game.load.spritesheet('GreenDoorHor', 'assets/sprites/GreenDoorHor.png', 100, 60);
+        game.load.spritesheet('PinkDoorHor', 'assets/sprites/PinkDoorHor.png', 100, 60);
 
         // reference to the health
         game.load.spritesheet('Health', 'assets/sprites/Health.png', 32, 32);
@@ -105,21 +107,35 @@ zhgame.Level1.prototype = {
         GrassLayer = map.createLayer('GrassLayer');
         MountainLayer = map.createLayer('MountainLayer');
         TreesLayer = map.createLayer('TreesLayer');
+        TreesLayer2 = map.createLayer('TreesLayer2');
         RocksLayer = map.createLayer('RocksLayer');
+        AscensionLayer = map.createLayer('AscensionLayer');
+        AscensionLayer2 = map.createLayer('AscensionLayer2');
 
+
+        // set the tilemap collisions for Ascension Layer
+        map.setCollisionBetween(203, 205, true, 'AscensionLayer');
+        map.setCollisionBetween(219, 221, true, 'AscensionLayer');
 
         // set the tilemap collisions for Rocks
         map.setCollisionBetween(203, 205, true, 'RocksLayer');
         map.setCollisionBetween(219, 221, true, 'RocksLayer');
         map.setCollisionBetween(235, 236, true, 'RocksLayer');
-        map.setCollisionBetween(251, 252, true, 'RocksLayer');
+        map.setCollisionBetween(251, 253, true, 'RocksLayer');
 
         // set the tilemap collisions for Trees
-        map.setCollisionBetween(196, 198, true, 'TreesLayer');
-        map.setCollisionBetween(212, 214, true, 'TreesLayer');
+        map.setCollisionBetween(196, 199, true, 'TreesLayer');
+        map.setCollisionBetween(212, 215, true, 'TreesLayer');
         map.setCollisionBetween(217, 219, true, 'TreesLayer');
         map.setCollisionBetween(228, 235, true, 'TreesLayer');
         map.setCollisionBetween(244, 251, true, 'TreesLayer');
+
+        // set the tilemap collisions for Trees
+        map.setCollisionBetween(196, 199, true, 'TreesLayer2');
+        map.setCollisionBetween(212, 215, true, 'TreesLayer2');
+        map.setCollisionBetween(217, 219, true, 'TreesLayer2');
+        map.setCollisionBetween(228, 235, true, 'TreesLayer2');
+        map.setCollisionBetween(244, 251, true, 'TreesLayer2');
 
         // set the tilemap collisions for Mountains
         map.setCollisionBetween(1, 4, true, 'MountainLayer');
@@ -131,7 +147,7 @@ zhgame.Level1.prototype = {
         map.setCollisionBetween(80, 89, true, 'MountainLayer');
         map.setCollisionBetween(96, 105, true, 'MountainLayer');
 
-        map.setCollisionBetween(112, 115, true, 'MountainLayer');
+        map.setCollisionBetween(112, 116, true, 'MountainLayer');// plus one
         map.setCollisionBetween(128, 131, true, 'MountainLayer');
         map.setCollisionBetween(144, 147, true, 'MountainLayer');
         map.setCollisionBetween(160, 163, true, 'MountainLayer');
@@ -143,27 +159,98 @@ zhgame.Level1.prototype = {
 
         //----Doors---------------------------------------------
 
-        GreenDoor = game.add.sprite(557, 530, 'GreenDoor');
-        game.physics.arcade.enable(GreenDoor);
-        GreenDoor.enableBody = true;
-        // GreenDoor.physicsBodyType = Phaser.Physics.ARCADE;
-        GreenDoor.anchor.setTo(0.5, 0.5);
-        GreenDoor.animations.add('flash', [0,1,2,3,4,3,2,1], 7, true);
-        GreenDoor.animations.play('flash');
-        GreenDoor.name = 'GreenDoor';
-        GreenDoor.body.immovable = true;
+        //  Green Door
+        GreenDoorHor = game.add.sprite(557, 530, 'GreenDoorHor');
+        game.physics.arcade.enable(GreenDoorHor);
+        GreenDoorHor.enableBody = true;
+        GreenDoorHor.anchor.setTo(0.5, 0.5);
+        GreenDoorHor.name = 'GreenDoorHor';
+        GreenDoorHor.body.immovable = true;
+
+
+        //  Blue Door
+        BlueDoorVert = game.add.sprite(2210, 370, 'BlueDoorVert');
+        game.physics.arcade.enable(BlueDoorVert);
+        BlueDoorVert.enableBody = true;
+        BlueDoorVert.anchor.setTo(0.5, 0.5);
+        BlueDoorVert.name = 'BlueDoorVert';
+        BlueDoorVert.body.immovable = true;
+
+        //  Pink Door
+        PinkDoorHor = game.add.sprite(1230, 860, 'PinkDoorHor');
+        game.physics.arcade.enable(PinkDoorHor);
+        PinkDoorHor.enableBody = true;
+        PinkDoorHor.anchor.setTo(0.5, 0.5);
+        PinkDoorHor.name = 'PinkDoorHor';
+        PinkDoorHor.body.immovable = true;
+
+        //  Red Door
+        RedDoorHor = game.add.sprite(2735, 1870, 'RedDoorHor');
+        game.physics.arcade.enable(RedDoorHor);
+        RedDoorHor.enableBody = true;
+        RedDoorHor.anchor.setTo(0.5, 0.5);
+        RedDoorHor.name = 'RedDoorHor';
+        RedDoorHor.body.immovable = true;
+
+        //  Gold Door
+        GoldDoorHor = game.add.sprite(142, 2800, 'GoldDoorHor');
+        game.physics.arcade.enable(GoldDoorHor);
+        GoldDoorHor.enableBody = true;
+        GoldDoorHor.anchor.setTo(0.5, 0.5);
+        GoldDoorHor.name = 'GoldDoorHor';
+        GoldDoorHor.body.immovable = true;
 
         //----Keys----------------------------------------------
 
+        // Green Key
         GreenKey = game.add.sprite(3034, 600, 'GreenKey');
         game.physics.arcade.enable(GreenKey);
         GreenKey.enableBody = true;
-        // GreenDoor.physicsBodyType = Phaser.Physics.ARCADE;
         GreenKey.anchor.setTo(0.5, 0.5);
         GreenKey.animations.add('flash', [0,1,2,3,4,3,2,1], 14, true);
         GreenKey.animations.play('flash');
         GreenKey.name = 'GreenKey';
         GreenKey.body.immovable = true;
+
+        // Blue Key
+        BlueKey = game.add.sprite(850, 1200, 'BlueKey');
+        game.physics.arcade.enable(BlueKey);
+        BlueKey.enableBody = true;
+        BlueKey.anchor.setTo(0.5, 0.5);
+        BlueKey.animations.add('flash', [0,1,2,3,4,3,2,1], 14, true);
+        BlueKey.animations.play('flash');
+        BlueKey.name = 'BlueKey';
+        BlueKey.body.immovable = true;
+
+        // Pink Key
+        PinkKey = game.add.sprite(2600, 600, 'PinkKey');
+        game.physics.arcade.enable(PinkKey);
+        PinkKey.enableBody = true;
+        PinkKey.anchor.setTo(0.5, 0.5);
+        PinkKey.animations.add('flash', [0,1,2,3,4,3,2,1], 14, true);
+        PinkKey.animations.play('flash');
+        PinkKey.name = 'PinkKey';
+        PinkKey.body.immovable = true;
+
+        // Red Key
+        RedKey = game.add.sprite(1000, 2900, 'RedKey');
+        game.physics.arcade.enable(RedKey);
+        RedKey.enableBody = true;
+        RedKey.anchor.setTo(0.5, 0.5);
+        RedKey.animations.add('flash', [0,1,2,3,4,3,2,1], 14, true);
+        RedKey.animations.play('flash');
+        RedKey.name = 'RedKey';
+        RedKey.body.immovable = true;
+
+        // Gold Key
+        GoldKey = game.add.sprite(2900, 2900, 'GoldKey');
+        game.physics.arcade.enable(GoldKey);
+        GoldKey.enableBody = true;
+        GoldKey.anchor.setTo(0.5, 0.5);
+        GoldKey.animations.add('flash', [0,1,2,3,4,3,2,1], 14, true);
+        GoldKey.animations.play('flash');
+        GoldKey.name = 'GoldKey';
+        GoldKey.body.immovable = true;
 
         //----Buttons-------------------------------------------
 
@@ -201,10 +288,10 @@ zhgame.Level1.prototype = {
         player1.souls = 0;
         player1.gun = 'pistol';
         player1.greenKey = false;
-        player1.greenKey = false;
-        player1.greenKey = false;
-        player1.greenKey = false;
-        player1.greenKey = false;
+        player1.blueKey = false;
+        player1.pinkKey = false;
+        player1.redKey = false;
+        player1.goldKey = false;
 
         //----PlayerAnimation-----------------------------------
 
@@ -309,7 +396,7 @@ zhgame.Level1.prototype = {
         enemies.physicsBodyType = Phaser.Physics.ARCADE;
 
         // create a set number of enemies in the group and set attributes
-        enemies.createMultiple(50, 'Enemy1', 0, false);
+        enemies.createMultiple(100, 'Enemy1', 0, false);
         enemies.forEach( function (enemy1){
             enemy1.anchor.setTo(0.59, 0.49);
             enemy1.scale.x = 1.5;
@@ -364,7 +451,7 @@ zhgame.Level1.prototype = {
         //---MachineGun-----------------------------------------
 
         // Create an instance of the MachineGun
-        MachineGun = game.add.sprite(750, 1270, 'MachineGun');
+        MachineGun = game.add.sprite(750, 1190, 'MachineGun');
         game.physics.arcade.enable(MachineGun);
         MachineGun.animations.add('bounce', [0,1,2,3,4,5,5,4,3,2,1], 24, true);
         MachineGun.play('bounce');
@@ -435,7 +522,9 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(player1, RocksLayer, function(){console.log(/*'Hitting Rocks'*/); });
         game.physics.arcade.collide(player1, GrassLayer, function(){console.log(/*'Hitting Grass'*/); });
         game.physics.arcade.collide(player1, TreesLayer, function(){console.log(/*'Hitting Trees'*/); });
+        game.physics.arcade.collide(player1, TreesLayer2, function(){console.log(/*'Hitting Trees'*/); });
         game.physics.arcade.collide(player1, MountainLayer, function(){console.log(/*'Hitting Mountain'*/); });
+        game.physics.arcade.overlap(player1, AscensionLayer, DisplayAscensionMsg, null, this);
         game.physics.arcade.overlap(player1, souls, PickupSoul, null, this);
         game.physics.arcade.overlap(player1, MachineGun, PickupMachineGun, null, this);
         game.physics.arcade.overlap(player1, ShotGun, PickupShotGun, null, this);
@@ -445,6 +534,7 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(weapon.bullets, RocksLayer, function(bullet){bullet.kill();});
         game.physics.arcade.collide(weapon.bullets, GrassLayer, function(bullet){bullet.kill();});
         game.physics.arcade.collide(weapon.bullets, TreesLayer, function(bullet){bullet.kill();});
+        game.physics.arcade.collide(weapon.bullets, TreesLayer2, function(bullet){bullet.kill();});
         game.physics.arcade.collide(weapon.bullets, MountainLayer, function(bullet){bullet.kill();});
         game.physics.arcade.overlap(weapon.bullets, enemies, killZombie, null, this);
 
@@ -452,16 +542,38 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(enemies, RocksLayer, function(){console.log(/*'Hitting Rocks'*/); });
         game.physics.arcade.collide(enemies, GrassLayer, function(){console.log(/*'Hitting Grass'*/); });
         game.physics.arcade.collide(enemies, TreesLayer, function(){console.log(/*'Hitting Trees'*/); });
+        game.physics.arcade.collide(enemies, TreesLayer2, function(){console.log(/*'Hitting Trees'*/); });
         game.physics.arcade.collide(enemies, MountainLayer, function(){console.log(/*'Hitting Mountain'*/); });
         game.physics.arcade.collide(enemies, enemies);
 
         // Door collision
-        game.physics.arcade.overlap(player1, GreenDoor, OpenDoor, null, this);
-        game.physics.arcade.collide(GreenDoor, player1, function(){/*console.log('Hitting Door');*/ });
-        game.physics.arcade.collide(enemies, GreenDoor, function(){/*console.log('Hitting Door');*/ });
+        game.physics.arcade.overlap(player1, GreenDoorHor, OpenDoor, null, this);
+        game.physics.arcade.collide(GreenDoorHor, player1, function(){/*console.log('Hitting Door');*/ });
+        game.physics.arcade.collide(enemies, GreenDoorHor, function(){/*console.log('Hitting Door');*/ });
+
+        game.physics.arcade.overlap(player1, BlueDoorVert, OpenDoor, null, this);
+        game.physics.arcade.collide(BlueDoorVert, player1, function(){/*console.log('Hitting Door');*/ });
+        game.physics.arcade.collide(enemies, BlueDoorVert, function(){/*console.log('Hitting Door');*/ });
+
+        game.physics.arcade.overlap(player1, PinkDoorHor, OpenDoor, null, this);
+        game.physics.arcade.collide(PinkDoorHor, player1, function(){/*console.log('Hitting Door');*/ });
+        game.physics.arcade.collide(enemies, PinkDoorHor, function(){/*console.log('Hitting Door');*/ });
+
+        game.physics.arcade.overlap(player1, RedDoorHor, OpenDoor, null, this);
+        game.physics.arcade.collide(RedDoorHor, player1, function(){/*console.log('Hitting Door');*/ });
+        game.physics.arcade.collide(enemies, RedDoorHor, function(){/*console.log('Hitting Door');*/ });
+
+        game.physics.arcade.overlap(player1, GoldDoorHor, OpenDoor, null, this);
+        game.physics.arcade.collide(GoldDoorHor, player1, function(){/*console.log('Hitting Door');*/ });
+        game.physics.arcade.collide(enemies, GoldDoorHor, function(){/*console.log('Hitting Door');*/ });
+
 
         // Key collision
         game.physics.arcade.overlap(player1, GreenKey, PickupKey, null, this);
+        game.physics.arcade.overlap(player1, BlueKey, PickupKey, null, this);
+        game.physics.arcade.overlap(player1, PinkKey, PickupKey, null, this);
+        game.physics.arcade.overlap(player1, RedKey, PickupKey, null, this);
+        game.physics.arcade.overlap(player1, GoldKey, PickupKey, null, this);
 
         fullscreenButton.x = game.camera.x + 0;
         fullscreenButton.y = game.camera.y + 0;
@@ -645,6 +757,8 @@ zhgame.Level1.prototype = {
 
         this.life.updateCrop();
 
+        AscensionMsg = "";
+
     },
 
     render: function() {
@@ -652,6 +766,12 @@ zhgame.Level1.prototype = {
         game.debug.text('justSpawned: ' + justSpawned, 250, 30);
         game.debug.text('Souls: ' + player1.souls, 280, 14);
         game.debug.text('Gun: ' + player1.gun, 750, 14);
+        game.debug.text('greenKey: ' + player1.greenKey, 250, 45);
+        game.debug.text('blueKey: ' + player1.blueKey, 250, 60);
+        game.debug.text('pinkKey: ' + player1.pinkKey, 250, 75);
+        game.debug.text('redKey: ' + player1.redKey, 250, 90);
+        game.debug.text('goldKey: ' + player1.goldKey, 250, 105);
+        game.debug.text('TestKey: ' + TestKey, 250, 120);
        //game.renderSettings.enableScrollDelta = false;
 
         // // Debug to view collision boxes
@@ -663,8 +783,52 @@ zhgame.Level1.prototype = {
 
 };
 
+function DisplayAscensionMsg() {
+
+
+}
+
 function OpenDoor(player, door) {
-    if((door.name === 'GreenDoor') && (player1.greenKey))
+    // Horizontal Doors
+    if((door.name === 'GreenDoorHor') && (player1.greenKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'BlueDoorHor') && (player1.blueKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'PinkDoorHor') && (player1.pinkKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'RedDoorHor') && (player1.redKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'GoldDoorHor') && (player1.goldKey))
+    {
+        door.kill();
+    }
+
+    // Vertical Doors
+    if((door.name === 'GreenDoorVert') && (player1.greenKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'BlueDoorVert') && (player1.blueKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'PinkDoorVert') && (player1.pinkKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'RedDoorVert') && (player1.redKey))
+    {
+        door.kill();
+    }
+    if((door.name === 'GoldDoorVert') && (player1.goldKey))
     {
         door.kill();
     }
@@ -675,8 +839,30 @@ function PickupKey(player, key) {
     if(key.name === 'GreenKey')
     {
         player.greenKey = true;
+        key.kill();
     }
-    key.kill();
+    if(key.name === 'BlueKey')
+    {
+        player.blueKey = true;
+        key.kill();
+    }
+    if(key.name === 'PinkKey')
+    {
+        player.pinkKey = true;
+        key.kill();
+    }
+    if(key.name === 'RedKey')
+    {
+        player.redKey = true;
+        key.kill();
+    }
+    if(key.name === 'GoldKey')
+    {
+        player.goldKey = true;
+        key.kill();
+    }
+
+    TestKey = key.name;
 }
 
 function cropLife(){
