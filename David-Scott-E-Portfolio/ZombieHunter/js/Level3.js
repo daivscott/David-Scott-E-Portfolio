@@ -554,7 +554,7 @@ function createZombie() {
 }
 
 function RestartGame() {
-    game.state.start('Level2');
+    game.state.start('GameOverScreen');
 }
 
 // function EnemyMove() {
