@@ -1,4 +1,4 @@
-var ref, hsText = [], hs = [5, 4, 3, 2, 1];
+var ref, fbObj, hsText = [], hs = [5, 4, 3, 2, 1];
 
 zhgame.HighScoreTable = function(){};
 zhgame.HighScoreTable.prototype = {
@@ -45,7 +45,30 @@ zhgame.HighScoreTable.prototype = {
 
         var updateHSText = this.updateHSText;
         ref.on('value', function(snapshot){
-            updateHSText(snapshot.val().hs);
+            fbObj = snapshot.val();
+            updateHSText(fbObj.hs);
+        });
+
+        // Create a label to use as a 'Clear' button
+        pause_label = game.add.text(280, 125, 'CLEAR', { font: '35px Arial', fill: '#fff' });
+        pause_label.inputEnabled = true;
+        pause_label.events.onInputUp.add(function () {
+            // When the 'Clear' button is pressed run clear the hsText array
+            ref.set({hs: [0, 0, 0, 0, 0]});
+        });
+
+        // Create a label to use as a 'Add Score' button
+        pause_label = game.add.text(700, 125, 'ADD SCORE', { font: '35px Arial', fill: '#fff' });
+        pause_label.inputEnabled = true;
+        pause_label.events.onInputUp.add(function () {
+            // When the 'ADD SCORE' button is pressed add random score
+            var score = Math.round(Math.random() * 100);
+            fbObj.hs.push(score);
+            fbObj.hs = fbObj.hs.sort(function (a, b) {
+                return b - a;
+            }).slice(0, 5);
+            ref.set(fbObj);
+            console.log(score);
         });
 
     },

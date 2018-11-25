@@ -1,5 +1,5 @@
 var fontBtn=[], fontSize = 64, VKOriginX = 200, VKOriginY = 150,
-    char1, char2, char3, submittedName;
+    char1, char2, char3, submittedName, PASSEDNAME;
 
 zhgame.InputName = function(){};
 zhgame.InputName.prototype = {
@@ -16,6 +16,7 @@ zhgame.InputName.prototype = {
         this.scale.pageAlignHorizontally = true;
         this.game.scale.refresh();
         this.game.scale.startFullScreen(false);
+        PASSEDNAME;
 
     },
     create: function(){
@@ -327,8 +328,10 @@ function SubmitName() {
         char3.nameText = '';
     }
     submittedName = char1.nameText + char2.nameText + char3.nameText;
+    PASSEDNAME = submittedName;
     console.log('Separate Name Parts = ' + char1.nameText + char2.nameText + char3.nameText);
     console.log('Submitted Name = ' + submittedName);
+    console.log('PASSEDNAME Name = ' + PASSEDNAME);
 }
 
 // function DisableStick() {
