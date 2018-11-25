@@ -295,17 +295,20 @@ function ClearName() {
     char1.blankChar = true;
     char1.flashing = false;
     char1.blank = true;
+    char1.nameText = undefined;
 
 
-    char2.loadTexture('fontBlank');
+        char2.loadTexture('fontBlank');
     char2.blankChar = true;
     char2.flashing = false;
     char2.blank = true;
+    char2.nameText = undefined;
 
-    char3.loadTexture('fontBlank');
+        char3.loadTexture('fontBlank');
     char3.blankChar = true;
     char3.flashing = false;
     char3.blank = true;
+    char3.nameText = undefined;
 }
 
 function SubmitName() {
