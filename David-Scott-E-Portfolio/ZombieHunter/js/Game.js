@@ -10,6 +10,6 @@ game.state.add('HighScoreTable', zhgame.HighScoreTable);
 game.state.add('InputName', zhgame.InputName);
 //game.state.add('Level3', zhgame.Level3);
 
-// game.state.start('Level1');
-game.state.start('HighScoreTable');
+game.state.start('Level1');
+// game.state.start('HighScoreTable');
 // game.state.start('InputName');

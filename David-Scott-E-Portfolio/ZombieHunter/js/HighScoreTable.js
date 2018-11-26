@@ -55,7 +55,7 @@ zhgame.HighScoreTable.prototype = {
         clear_label.inputEnabled = true;
         clear_label.events.onInputUp.add(function () {
             // When the 'Clear' button is pressed run clear the hsText array
-            ref.set({hs: [0, 0, 0, 0, 0]});
+            ref.set({hs:[{score: 5, pName: 'COM'}, {score: 4, pName: 'COM'}, {score: 3, pName: 'COM'}, {score: 2, pName: 'COM'}, {score: 1, pName: 'COM'}]});
         });
 
         // Create a label to use as a 'Add Score' button

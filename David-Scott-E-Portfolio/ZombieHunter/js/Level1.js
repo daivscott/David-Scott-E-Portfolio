@@ -4,7 +4,7 @@ var zhgame = {}, centreX = 1100/2, centreY = 600/2, player1, enemy1, speed = 200
     enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey, BlueKey, GreenKey, PinkKey,
     Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120, healthLocationX,
     healthLocationY, healthCount, GreenDoorHor, GreenDoorVert, BlueDoorHor, BlueDoorVert, PinkDoorHor,
-    PinkDoorVert, RedDoorHor, RedDoorVert, GoldDoorHor, GoldDoorVert, TestKey, AscensionMsg;
+    PinkDoorVert, RedDoorHor, RedDoorVert, GoldDoorHor, GoldDoorVert, TestKey, AscensionMsg, AscensionSymbol;
 
 
 zhgame.Level1 = function(){};
@@ -63,6 +63,9 @@ zhgame.Level1.prototype = {
 
         // reference to the zombie spawn
         game.load.spritesheet('Spawner', 'assets/sprites/ZombieSpawn.png', 60, 40);
+
+        // Ascension Symbol
+        game.load.spritesheet('AscensionSymbol', 'assets/sprites/AscensionSymbol.png', 512, 384);
 
     },
     init: function(){
@@ -156,6 +159,16 @@ zhgame.Level1.prototype = {
         map.setCollisionBetween(208, 211, true, 'MountainLayer');
         map.setCollisionBetween(224, 227, true, 'MountainLayer');
         map.setCollisionBetween(240, 243, true, 'MountainLayer');
+
+        //----AscensionSymbol-----------------------------------
+
+        AscensionSymbol = game.add.sprite(2015, 3030, 'AscensionSymbol');
+        game.physics.arcade.enable(AscensionSymbol);
+        AscensionSymbol.scale.setTo(0.5);
+        AscensionSymbol.enableBody = true;
+        AscensionSymbol.anchor.setTo(0.5, 0.5);
+        AscensionSymbol.name = 'AscensionSymbol';
+        AscensionSymbol.body.immovable = true;
 
         //----Doors---------------------------------------------
 
@@ -292,6 +305,7 @@ zhgame.Level1.prototype = {
         player1.pinkKey = false;
         player1.redKey = false;
         player1.goldKey = false;
+        player1.score = 0;
 
         //----PlayerAnimation-----------------------------------
 
@@ -497,6 +511,20 @@ zhgame.Level1.prototype = {
 
         game.time.advancedTiming = true;
 
+        //----Timer--------------------------------------------
+
+        totalLevelTime = 600;
+
+        //  Create our Timer
+        var levelTimer = game.time.create(false);
+
+        //  Set a TimerEvent to occur after 2 seconds
+        levelTimer.loop(1000, reduceTimer, this);
+
+        //  Start the timer running - this is important!
+        //  It won't start automatically, allowing you to hook it to button events and the like.
+        levelTimer.start();
+
         //----Pause--------------------------------------------
         // Create a label to use as a button
         pause_label = game.add.text(100, 20, 'Pause', { font: '24px Arial', fill: '#fff' });
@@ -509,6 +537,9 @@ zhgame.Level1.prototype = {
         game.stage.smoothed = false;
 
         createHealth();
+
+        AscensionMsg = "";
+
     },
 
 
@@ -524,7 +555,7 @@ zhgame.Level1.prototype = {
         game.physics.arcade.collide(player1, TreesLayer, function(){console.log(/*'Hitting Trees'*/); });
         game.physics.arcade.collide(player1, TreesLayer2, function(){console.log(/*'Hitting Trees'*/); });
         game.physics.arcade.collide(player1, MountainLayer, function(){console.log(/*'Hitting Mountain'*/); });
-        game.physics.arcade.overlap(player1, AscensionLayer, DisplayAscensionMsg, null, this);
+        game.physics.arcade.overlap(AscensionSymbol, player1, DisplayAscensionMsg, null, this);
         game.physics.arcade.overlap(player1, souls, PickupSoul, null, this);
         game.physics.arcade.overlap(player1, MachineGun, PickupMachineGun, null, this);
         game.physics.arcade.overlap(player1, ShotGun, PickupShotGun, null, this);
@@ -757,7 +788,12 @@ zhgame.Level1.prototype = {
 
         this.life.updateCrop();
 
-        AscensionMsg = "";
+        if(totalLevelTime < 1)
+        {
+            RestartGame();
+        }
+
+
 
     },
 
@@ -766,12 +802,15 @@ zhgame.Level1.prototype = {
         game.debug.text('justSpawned: ' + justSpawned, 250, 30);
         game.debug.text('Souls: ' + player1.souls, 280, 14);
         game.debug.text('Gun: ' + player1.gun, 750, 14);
+        game.debug.text('Score: ' + player1.score, 750, 30);
         game.debug.text('greenKey: ' + player1.greenKey, 250, 45);
         game.debug.text('blueKey: ' + player1.blueKey, 250, 60);
         game.debug.text('pinkKey: ' + player1.pinkKey, 250, 75);
         game.debug.text('redKey: ' + player1.redKey, 250, 90);
         game.debug.text('goldKey: ' + player1.goldKey, 250, 105);
-        game.debug.text('TestKey: ' + TestKey, 250, 120);
+        game.debug.text('Time: ' + totalLevelTime, 540, 50);
+        // game.debug.text('TestKey: ' + TestKey, 250, 120);
+        game.debug.text(AscensionMsg, 300, 300);
        //game.renderSettings.enableScrollDelta = false;
 
         // // Debug to view collision boxes
@@ -779,13 +818,38 @@ zhgame.Level1.prototype = {
         // game.debug.physicsGroup(bullets);
         // game.debug.physicsGroup(enemies);
         // game.debug.body(MachineGun);
+        // game.debug.body(AscensionSymbol);
     }
 
 };
 
 function DisplayAscensionMsg() {
+    if((player1.souls < 200) /*&& (!player1.greenKey) && (!player1.blueKey) && (!player1.pinkKey) && (!player1.redKey)*/)
+    {
 
+        AscensionMsg = "Too early. You need four keys and 200 souls to ascend";
+        game.time.events.add(Phaser.Timer.SECOND * 0.5, hideMessage, this);
 
+    }
+
+    // else
+    // {
+    //     AscensionMsg = "";
+    // }
+    function hideMessage() {
+
+        AscensionMsg = "";
+
+    }
+
+}
+
+function reduceTimer() {
+    totalLevelTime--;
+}
+
+function AddToScore() {
+    player1.score = player1.score + 10;
 }
 
 function OpenDoor(player, door) {
@@ -793,44 +857,54 @@ function OpenDoor(player, door) {
     if((door.name === 'GreenDoorHor') && (player1.greenKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'BlueDoorHor') && (player1.blueKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'PinkDoorHor') && (player1.pinkKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'RedDoorHor') && (player1.redKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'GoldDoorHor') && (player1.goldKey))
     {
         door.kill();
+        AddToScore();
     }
 
     // Vertical Doors
     if((door.name === 'GreenDoorVert') && (player1.greenKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'BlueDoorVert') && (player1.blueKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'PinkDoorVert') && (player1.pinkKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'RedDoorVert') && (player1.redKey))
     {
         door.kill();
+        AddToScore();
     }
     if((door.name === 'GoldDoorVert') && (player1.goldKey))
     {
         door.kill();
+        AddToScore();
     }
 }
 
@@ -839,26 +913,35 @@ function PickupKey(player, key) {
     if(key.name === 'GreenKey')
     {
         player.greenKey = true;
+        AddToScore();
         key.kill();
     }
     if(key.name === 'BlueKey')
     {
         player.blueKey = true;
+        AddToScore();
         key.kill();
     }
     if(key.name === 'PinkKey')
     {
         player.pinkKey = true;
+        AddToScore();
         key.kill();
     }
     if(key.name === 'RedKey')
     {
         player.redKey = true;
+        AddToScore();
         key.kill();
     }
     if(key.name === 'GoldKey')
     {
         player.goldKey = true;
+        AddToScore();
+        AddToScore();
+        AddToScore();
+        AddToScore();
+        AddToScore();
         key.kill();
     }
 
@@ -905,6 +988,7 @@ function killZombie(bullet, enemy1) {
     function killTheZombie(){
         enemyDeathLoc = enemy1;
         enemy1.kill();
+        AddToScore();
         soul = souls.getFirstDead();
         soul.reset(enemyDeathLoc.x, enemyDeathLoc.y);
         //soul = game.add.sprite(enemyDeathLoc.x, enemyDeathLoc.y, 'Soul', 1);
@@ -939,6 +1023,7 @@ function PickupSoul(player1, soulAnim){
     console.log('hit soul');
     soulAnim.kill();
     player1.souls++;
+    AddToScore();
 }
 
 function PickupMachineGun(player1, MachineGun){
@@ -1136,3 +1221,4 @@ function gofull() {
     }
 
 }
+
