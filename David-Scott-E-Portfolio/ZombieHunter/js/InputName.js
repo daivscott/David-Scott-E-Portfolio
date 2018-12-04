@@ -332,6 +332,7 @@ function SubmitName() {
     console.log('Separate Name Parts = ' + char1.nameText + char2.nameText + char3.nameText);
     console.log('Submitted Name = ' + submittedName);
     console.log('PASSEDNAME Name = ' + PASSEDNAME);
+    game.state.start('HighScoreTable');
 }
 
 // function DisableStick() {

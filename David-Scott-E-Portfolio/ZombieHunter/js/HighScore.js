@@ -1,7 +1,7 @@
 var ref, fbObj, hsText = [];
 
-zhgame.HighScoreTable = function(){};
-zhgame.HighScoreTable.prototype = {
+zhgame.HighScoreTable2 = function(){};
+zhgame.HighScoreTable2.prototype = {
     preload: function(){},
     init: function(){
 

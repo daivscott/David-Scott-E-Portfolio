@@ -4,7 +4,7 @@ var zhgame = {}, centreX = 1100/2, centreY = 600/2, player1, enemy1, speed = 200
     enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey, BlueKey, GreenKey, PinkKey,
     Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120, healthLocationX,
     healthLocationY, healthCount, GreenDoorHor, GreenDoorVert, BlueDoorHor, BlueDoorVert, PinkDoorHor,
-    PinkDoorVert, RedDoorHor, RedDoorVert, GoldDoorHor, GoldDoorVert, TestKey, AscensionMsg, AscensionSymbol;
+    PinkDoorVert, RedDoorHor, RedDoorVert, GoldDoorHor, GoldDoorVert, TestKey, AscensionMsg, AscensionSymbol, FinalScore;
 
 
 zhgame.Level1 = function(){};
@@ -824,7 +824,7 @@ zhgame.Level1.prototype = {
 };
 
 function DisplayAscensionMsg() {
-    if((player1.souls < 200) /*&& (!player1.greenKey) && (!player1.blueKey) && (!player1.pinkKey) && (!player1.redKey)*/)
+    if((player1.souls < 10) /*&& (!player1.greenKey) && (!player1.blueKey) && (!player1.pinkKey) && (!player1.redKey)*/)
     {
 
         AscensionMsg = "Too early. You need four keys and 200 souls to ascend";
@@ -832,16 +832,23 @@ function DisplayAscensionMsg() {
 
     }
 
-    // else
-    // {
-    //     AscensionMsg = "";
-    // }
+    else
+    {
+        setScore();
+        FinalScore = FinalScore + 5000 + player1.souls;
+        game.state.start('GameCompleteScreen', true, false, FinalScore);
+
+    }
     function hideMessage() {
 
         AscensionMsg = "";
 
     }
 
+}
+
+function setScore() {
+    FinalScore = player1.score;
 }
 
 function reduceTimer() {
@@ -1099,7 +1106,9 @@ function createHealth() {
 }
 
 function RestartGame() {
-    game.state.start('Level2');
+    setScore();
+    game.state.start('GameOverScreen');
+    // game.state.start('GameOverScreen'/*, true, false, FinalScore*/);
 }
 
 function MouseFire() {
