@@ -1,4 +1,4 @@
-var ref, fbObj, hsText = [], hs = [5, 4, 3, 2, 1], dispItems, scoreChecked = false;
+var ref, fbObj, hsText = [], hs = [5, 4, 3, 2, 1], dispItems, scoreChecked = false, titleText, scoreText, soulsText,  keyText;
 
 zhgame.HighScoreTable = function(){};
 zhgame.HighScoreTable.prototype = {
@@ -37,7 +37,7 @@ zhgame.HighScoreTable.prototype = {
 
         for(var i = 1; i < 6; i++)
         {
-            game.add.text(500, 20 + (i * 90), i + '. ', {fontSize: '40px', fill: '#ff2218'}).anchor.setTo(1, 0);
+            game.add.text(500, 20 + (i * 90), i + '. ', {fontSize: '40px', fill: '#ffffff'}).anchor.setTo(1, 0);
 
         }
 
@@ -54,7 +54,7 @@ zhgame.HighScoreTable.prototype = {
         });
 
         // Create a label to use as a 'Clear' button
-        clear_label = game.add.text(280, 125, 'CLEAR', { font: '35px Arial', fill: '#fff' });
+        clear_label = game.add.text(10, 550, 'CLEAR', { font: '35px Arial', fill: '#000000' });
         clear_label.inputEnabled = true;
         clear_label.events.onInputUp.add(function () {
             // When the 'Clear' button is pressed run clear the hsText array
@@ -80,19 +80,49 @@ zhgame.HighScoreTable.prototype = {
         //     //console.log(score);
         // });
 
+        mainMenuBtnShadow = game.add.text(950, 500, 'Main Menu', { font: '37px Fighting Spirit turbo', fill: '#ffffff' });
+        mainMenuBtnShadow.anchor.set(0.5);
+        mainMenuBtnShadow.inputEnabled = true;
+
+        // Create a label to use as a 'Play' button
+        mainMenuBtn = game.add.text(950, 500, 'Main Menu', { font: '35px Fighting Spirit turbo', fill: '#ff0000' });
+        mainMenuBtn.anchor.set(0.5);
+        mainMenuBtn.inputEnabled = true;
+        mainMenuBtn.events.onInputUp.add(function () {
+            changeFullscreen();
+            // Load Highscores
+            game.state.start('MainMenu');
+        });
+
         game.time.events.add(Phaser.Timer.SECOND * 1, pasteScore, this);
 
 
 
     },
     update: function(){
-        // if((hs[4].score < FinalScore))
-        // {
-        //     game.state.start('InputName');
-        // }
+        titleText = game.add.text(550, 40, 'Highscore Heroes', { font: "75px Fighting Spirit turbo", fill: '#ff0000' });
+        titleText.anchor.set(0.5);
 
-        dispItems.scoreText = game.add.text(540, 30, 'Score = ' + FinalScore, { font: "35px Fighting Spirit turbo", fill: '#ff0000' });
-        dispItems.scoreText.anchor.set(0.5);
+        if(mainMenuBtn.input.pointerOver())
+        {
+            mainMenuBtnShadow.alpha = 1;
+        }
+        else
+        {
+            mainMenuBtnShadow.alpha = 0;
+        }
+
+        if(player1)
+        {
+            scoreText = game.add.text(100, 175, 'Lastest Highscore', { font: "35px Arial", fill: '#fff' });
+            scoreText = game.add.text(150, 225, 'Score = ' + FinalScore, { font: "35px Fighting Spirit turbo", fill: '#fff' });
+            //dispItems.scoreText.anchor.set(0.5);
+            soulsText = game.add.text(150, 275, 'Souls = ' + player1.souls, { font: "35px Fighting Spirit turbo", fill: '#fff' });
+            //dispItems.soulsText.anchor.set(0.5);
+            keyText = game.add.text(150, 325, 'Keys  = ' + player1.keys, { font: "35px Fighting Spirit turbo", fill: '#fff' });
+
+
+        }
     },
     updateHSText: function(hs){
         for(var i = 0; i < 5; i++)

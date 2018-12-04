@@ -1,4 +1,4 @@
-var zhgame = {}, centreX = 1100/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer,
+var /*zhgame = {},*/ centreX = 1100/2, centreY = 600/2, player1, enemy1, speed = 200, map, RocksLayer, TreesLayer,
     TreesLayer2, AscensionLayer, AscensionLayer2, MountainLayer, GrassLayer, bullets, bulletSpeed = 1000,
     nextFire = 0, fireRate = 200, enemySpeed = 120, enemies, bmd, bglife, animDeath, animHit, animGrab,
     enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey, BlueKey, GreenKey, PinkKey,
@@ -18,8 +18,6 @@ zhgame.Level1.prototype = {
         game.load.spritesheet('PlayerPistol', 'assets/sprites/PistolShoot.png', 69.5, 34, 5);
 
         // reference to zombie
-        //game.load.image('Enemy1', 'assets/sprites/zombie1.png');
-        // game.load.spritesheet('Enemy1', 'assets/sprites/ZOMBIE_ALL.png', 60, 60, 30, 5, 6);
         game.load.spritesheet('Enemy1', 'assets/sprites/ZOMBIE_ALL2.png', 60, 60);
 
         // reference the bullet
@@ -30,8 +28,6 @@ zhgame.Level1.prototype = {
         game.load.spritesheet('fullscreenBtn', 'assets/spritesheet/FullscreenButton_spritesheet.png', 193, 71);
 
         // reference the tilemap
-        // game.load.tilemap('mountains', 'assets/tilemaps/mountains.json', null, Phaser.Tilemap.TILED_JSON);
-        // game.load.image('mountain_landscape', 'assets/spritesheet/mountain_landscape.png');
         game.load.tilemap('Level1', 'assets/tilemaps/Level1.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('mountain_landscape', 'assets/spritesheet/mountain_landscape.png');
 
@@ -268,7 +264,7 @@ zhgame.Level1.prototype = {
         //----Buttons-------------------------------------------
 
         // create the button to enter fullscreen
-        fullscreenButton = game.add.button(100, 100, 'fullscreenBtn', changeFullscreen, this, 2, 1, 0);
+        // fullscreenButton = game.add.button(100, 100, 'fullscreenBtn', changeFullscreen, this, 2, 1, 0);
 
 
         //----Bullets-------------------------------------------
@@ -305,6 +301,7 @@ zhgame.Level1.prototype = {
         player1.pinkKey = false;
         player1.redKey = false;
         player1.goldKey = false;
+        player1.keys = 0;
         player1.score = 0;
 
         //----PlayerAnimation-----------------------------------
@@ -525,14 +522,14 @@ zhgame.Level1.prototype = {
         //  It won't start automatically, allowing you to hook it to button events and the like.
         levelTimer.start();
 
-        //----Pause--------------------------------------------
-        // Create a label to use as a button
-        pause_label = game.add.text(100, 20, 'Pause', { font: '24px Arial', fill: '#fff' });
-        pause_label.inputEnabled = true;
-        pause_label.events.onInputUp.add(function () {
-            // When the paus button is pressed, we pause the game
-            game.paused = true;
-        });
+        // //----Pause--------------------------------------------
+        // // Create a label to use as a button
+        // pause_label = game.add.text(100, 20, 'Pause', { font: '24px Arial', fill: '#fff' });
+        // pause_label.inputEnabled = true;
+        // pause_label.events.onInputUp.add(function () {
+        //     // When the paus button is pressed, we pause the game
+        //     game.paused = true;
+        // });
 
         game.stage.smoothed = false;
 
@@ -606,8 +603,8 @@ zhgame.Level1.prototype = {
         game.physics.arcade.overlap(player1, RedKey, PickupKey, null, this);
         game.physics.arcade.overlap(player1, GoldKey, PickupKey, null, this);
 
-        fullscreenButton.x = game.camera.x + 0;
-        fullscreenButton.y = game.camera.y + 0;
+        // fullscreenButton.x = game.camera.x + 0;
+        // fullscreenButton.y = game.camera.y + 0;
 
 
         //virtual pad movement
@@ -824,21 +821,23 @@ zhgame.Level1.prototype = {
 };
 
 function DisplayAscensionMsg() {
-    if((player1.souls < 10) /*&& (!player1.greenKey) && (!player1.blueKey) && (!player1.pinkKey) && (!player1.redKey)*/)
+    // if(player1.keys < 4)
+    // {
+    //     AscensionMsg = "Too early. You need four keys and 200 souls to ascend";
+    //     game.time.events.add(Phaser.Timer.SECOND * 0.5, hideMessage, this);
+    // }
+    if((player1.souls < 10) || (player1.keys < 4))
     {
-
         AscensionMsg = "Too early. You need four keys and 200 souls to ascend";
         game.time.events.add(Phaser.Timer.SECOND * 0.5, hideMessage, this);
-
     }
-
     else
     {
         setScore();
         FinalScore = FinalScore + 5000 + player1.souls;
         game.state.start('GameCompleteScreen', true, false, FinalScore);
-
     }
+
     function hideMessage() {
 
         AscensionMsg = "";
@@ -922,24 +921,28 @@ function PickupKey(player, key) {
         player.greenKey = true;
         AddToScore();
         key.kill();
+        player1.keys++;
     }
     if(key.name === 'BlueKey')
     {
         player.blueKey = true;
         AddToScore();
         key.kill();
+        player1.keys++;
     }
     if(key.name === 'PinkKey')
     {
         player.pinkKey = true;
         AddToScore();
         key.kill();
+        player1.keys++;
     }
     if(key.name === 'RedKey')
     {
         player.redKey = true;
         AddToScore();
         key.kill();
+        player1.keys++;
     }
     if(key.name === 'GoldKey')
     {
@@ -950,6 +953,7 @@ function PickupKey(player, key) {
         AddToScore();
         AddToScore();
         key.kill();
+        player1.keys++;
     }
 
     TestKey = key.name;
