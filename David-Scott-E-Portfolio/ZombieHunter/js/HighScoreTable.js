@@ -1,4 +1,4 @@
-var ref, fbObj, hsText = [], hs = [5, 4, 3, 2, 1], dispItems, scoreChecked = false, titleText, scoreText, soulsText,  keyText;
+var ref, fbObj, hsText = [], hs = [5, 4, 3, 2, 1], dispItems, scoreChecked = false, titleText, scoreText, soulsText,  keyText, config;
 
 zhgame.HighScoreTable = function(){};
 zhgame.HighScoreTable.prototype = {
@@ -20,7 +20,7 @@ zhgame.HighScoreTable.prototype = {
 
         //
             // Initialize Firebase
-            var config = {
+            config = {
                 apiKey: "AIzaSyC0UpYALegB9F-dhn1PRfk0cigg6MMXzM4",
                 authDomain: "david-scott-e-portfolio.firebaseapp.com",
                 databaseURL: "https://david-scott-e-portfolio.firebaseio.com",
@@ -28,7 +28,7 @@ zhgame.HighScoreTable.prototype = {
                 storageBucket: "david-scott-e-portfolio.appspot.com",
                 messagingSenderId: "422279600051"
             };
-        if(!scoreChecked) {
+        if (!firebase.apps.length) {
             firebase.initializeApp(config);
         }
 
@@ -80,17 +80,17 @@ zhgame.HighScoreTable.prototype = {
         //     //console.log(score);
         // });
 
-        mainMenuBtnShadow = game.add.text(950, 500, 'Main Menu', { font: '37px Fighting Spirit turbo', fill: '#ffffff' });
+        mainMenuBtnShadow = game.add.text(550, 580, 'Main Menu', { font: '37px Fighting Spirit turbo', fill: '#ffffff' });
         mainMenuBtnShadow.anchor.set(0.5);
         mainMenuBtnShadow.inputEnabled = true;
 
         // Create a label to use as a 'Play' button
-        mainMenuBtn = game.add.text(950, 500, 'Main Menu', { font: '35px Fighting Spirit turbo', fill: '#ff0000' });
+        mainMenuBtn = game.add.text(550, 580, 'Main Menu', { font: '35px Fighting Spirit turbo', fill: '#ff0000' });
         mainMenuBtn.anchor.set(0.5);
         mainMenuBtn.inputEnabled = true;
         mainMenuBtn.events.onInputUp.add(function () {
-            changeFullscreen();
-            // Load Highscores
+            ref = null;
+            config = null;
             game.state.start('MainMenu');
         });
 
@@ -103,6 +103,16 @@ zhgame.HighScoreTable.prototype = {
         titleText = game.add.text(550, 40, 'Highscore Heroes', { font: "75px Fighting Spirit turbo", fill: '#ff0000' });
         titleText.anchor.set(0.5);
 
+        timer += game.time.elapsed;
+
+        if ( timer >= 500 )
+        {
+
+            timer -= 500;
+            tweenTint(mainMenuBtn, 0x0000ff, 0xff0000, 2000);
+
+        }
+
         if(mainMenuBtn.input.pointerOver())
         {
             mainMenuBtnShadow.alpha = 1;
@@ -112,7 +122,7 @@ zhgame.HighScoreTable.prototype = {
             mainMenuBtnShadow.alpha = 0;
         }
 
-        if(player1)
+        if((player1) && (FinalScore > 0))
         {
             scoreText = game.add.text(100, 175, 'Lastest Highscore', { font: "35px Arial", fill: '#fff' });
             scoreText = game.add.text(150, 225, 'Score = ' + FinalScore, { font: "35px Fighting Spirit turbo", fill: '#fff' });
@@ -129,12 +139,14 @@ zhgame.HighScoreTable.prototype = {
         {
             hsText[i].text = hs[i].pName + ' ' + hs[i].score;
         }
+        console.log('hs[4].score = ' + hs[4].score + 'FinalScore = ' + FinalScore);
         if((hs[4].score < FinalScore) && (!scoreChecked))
         {
-            ref = null;
-            config = null;
+            //ref = null;
+            //config = null;
             game.state.start('InputName');
             scoreChecked = true;
+            firebase.initializeApp(null);
         }
     }
 
@@ -170,3 +182,4 @@ function checkScore(hs){
     // }
     // console.log('checking score ' + hs[4].score);
 }
+

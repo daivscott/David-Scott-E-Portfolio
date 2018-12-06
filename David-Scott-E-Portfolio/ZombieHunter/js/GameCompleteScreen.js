@@ -14,18 +14,24 @@ zhgame.GameCompleteScreen.prototype = {
     },
     preload: function(){
 
+
         game.load.image("complete", "assets/sprites/GameCompleteScreen/GameCompleteScreen.png");
         game.load.image("continue", "assets/sprites/GameOverScreen/ContinueMessage.png");
         game.load.image("mobileContinue", "assets/sprites/GameOverScreen/MobileContinueMessage.png");
-        game.load.audio("scream", "assets/audio/Scream.mp3");
+        // game.load.audio("scream", "assets/audio/Scream.mp3");
 
     },
     create: function(){
+        game.menuTheme.stop();
+
+
+        game.completeTheme.play();
+
         game.stage.backgroundColor = '#000000';
 
-        // Create scream sound and play
-        var screamSound = game.add.audio('scream');
-        screamSound.play();
+        // // Create scream sound and play
+        // var screamSound = game.add.audio('scream');
+        // screamSound.play();
 
         AddChangeStateEventListeners();
 
@@ -68,13 +74,13 @@ zhgame.GameCompleteScreen.prototype = {
 
         //game.add.tween(continueMessage).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
-        function DisableStick() {
-
-            // // disable and hide mobile controls
-            // stick.enabled = false;
-            // stick.visible = false;
-            // fireButton.visible = false;
-        }
+        // function DisableStick() {
+        //
+        //     // disable and hide mobile controls
+        //     stick.enabled = false;
+        //     stick.visible = false;
+        //     fireButton.visible = false;
+        // }
 
     },
     update: function(){
@@ -93,4 +99,12 @@ zhgame.GameCompleteScreen.prototype = {
 
 
 };
+
+function DisableStick() {
+
+    // disable and hide mobile controls
+    stick.enabled = false;
+    stick.visible = false;
+    fireButton.visible = false;
+}
 

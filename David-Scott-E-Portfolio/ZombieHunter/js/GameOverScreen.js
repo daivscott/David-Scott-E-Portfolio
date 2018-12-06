@@ -23,6 +23,8 @@ zhgame.GameOverScreen.prototype = {
     create: function(){
         game.stage.backgroundColor = '#000000';
 
+        game.menuTheme.stop();
+
         // Create scream sound and play
         var screamSound = game.add.audio('scream');
         screamSound.play();
@@ -69,13 +71,13 @@ zhgame.GameOverScreen.prototype = {
 
         //game.add.tween(continueMessage).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
-        function DisableStick() {
-
-            // // disable and hide mobile controls
-            // stick.enabled = false;
-            // stick.visible = false;
-            // fireButton.visible = false;
-        }
+        // function DisableStick() {
+        //
+        //     // disable and hide mobile controls
+        //     stick.enabled = false;
+        //     stick.visible = false;
+        //     fireButton.visible = false;
+        // }
 
     },
     update: function(){
@@ -94,4 +96,12 @@ zhgame.GameOverScreen.prototype = {
 
 
 };
+
+function DisableStick() {
+
+    // disable and hide mobile controls
+    stick.enabled = false;
+    stick.visible = false;
+    fireButton.visible = false;
+}
 

@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Fighting Spirit turbo";
+    font-style: normal;
+    font-weight: 400;
+    src: url("assets/font/Fighting Spirit 2.ttf");
+}
+
+/*#preload-font {*/
+    /*font-family: 'Fighting Spirit 2', Fighting Spirit turbo;*/
+    /*text-indent: -9999px;*/
+    /*font-size: 0;*/
+/*}*/

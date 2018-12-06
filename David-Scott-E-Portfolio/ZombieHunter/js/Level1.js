@@ -4,7 +4,8 @@ var /*zhgame = {},*/ centreX = 1100/2, centreY = 600/2, player1, enemy1, speed =
     enemyDeathLoc, souls, soul, soulAnim, MachineGun, ShotGun, RedKey, GoldKey, BlueKey, GreenKey, PinkKey,
     Health, weapon, bullet,shotgunRounds = 4, health, Spawn1, Spawn2, Spawn3, justSpawned = 120, healthLocationX,
     healthLocationY, healthCount, GreenDoorHor, GreenDoorVert, BlueDoorHor, BlueDoorVert, PinkDoorHor,
-    PinkDoorVert, RedDoorHor, RedDoorVert, GoldDoorHor, GoldDoorVert, TestKey, AscensionMsg, AscensionSymbol, FinalScore;
+    PinkDoorVert, RedDoorHor, RedDoorVert, GoldDoorHor, GoldDoorVert, TestKey, AscensionMsg, AscensionSymbol,
+    FinalScore, healthBonus, GUIGreenKey, GUIBlueKey, GUIPinkKey, GUIRedKey, GUIGoldKey, keyBlock;
 
 
 zhgame.Level1 = function(){};
@@ -14,7 +15,7 @@ zhgame.Level1.prototype = {
         game.load.atlas('generic', 'assets/skins/generic-joystick.png', 'assets/skins/generic-joystick.json');
 
         // reference the Player
-        game.load.image('Player1', 'assets/sprites/PistolShoot2.png');
+        // game.load.image('Player1', 'assets/sprites/PistolShoot2.png');
         game.load.spritesheet('PlayerPistol', 'assets/sprites/PistolShoot.png', 69.5, 34, 5);
 
         // reference to zombie
@@ -33,6 +34,9 @@ zhgame.Level1.prototype = {
 
         // refernce to the soul pickup
         game.load.spritesheet('Soul', 'assets/sprites/SoulPickup.png', 32, 32);
+
+        // reference to the pistol
+        game.load.spritesheet('Pistol', 'assets/sprites/Pistol.png', 32, 32);
 
         // reference to the machine gun
         game.load.spritesheet('MachineGun', 'assets/sprites/MachineGun.png', 32, 32);
@@ -63,6 +67,22 @@ zhgame.Level1.prototype = {
         // Ascension Symbol
         game.load.spritesheet('AscensionSymbol', 'assets/sprites/AscensionSymbol.png', 512, 384);
 
+        // gun shot audio
+        game.load.audio("PistolAudio", "assets/audio/PistolAudio.mp3");
+        game.load.audio("MachinegunAudio", "assets/audio/MachinegunAudio.mp3");
+        game.load.audio("ShotgunAudio", "assets/audio/ShotgunAudio.mp3");
+
+        // fx audio
+        game.load.audio("HealthAudio", "assets/audio/HealthAudio.wav");
+        game.load.audio("SoulAudio", "assets/audio/SoulAudio.wav");
+        game.load.audio("GunPickupAudio", "assets/audio/GunPickupAudio.wav");
+        game.load.audio("ZombieDeathAudio", "assets/audio/ZombieDeathAudio.mp3");
+        game.load.audio("DoorAudio", "assets/audio/DoorAudio.wav");
+        game.load.audio("KeyAudio", "assets/audio/KeyAudio.wav");
+
+        // ref keyblock
+        game.load.spritesheet('KeyBlock', 'assets/sprites/KeyBlock.png', 185, 42);
+
     },
     init: function(){
 
@@ -77,6 +97,8 @@ zhgame.Level1.prototype = {
 
     //----CREATE FUNCTION----------------------------------------------------------------------------
     create: function(){
+
+
 
         // set game physics to arcade
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -166,7 +188,66 @@ zhgame.Level1.prototype = {
         AscensionSymbol.name = 'AscensionSymbol';
         AscensionSymbol.body.immovable = true;
 
-        //----Doors---------------------------------------------
+        //----GUI---------------------------------------------
+
+        keyBlock = game.add.sprite(200, 25, 'KeyBlock');
+        keyBlock.anchor.set(0.5);
+        keyBlock.scale.setTo(1.5, 1);
+        keyBlock.fixedToCamera = true;
+
+        GUIGreenKey = game.add.sprite(65, 10, 'GreenKey');
+        GUIGreenKey.frame = 5;
+        GUIGreenKey.fixedToCamera = true;
+        GUIGreenKey.visible = false;
+
+        GUIBlueKey = game.add.sprite(100, 10, 'BlueKey');
+        GUIBlueKey.frame = 5;
+        GUIBlueKey.fixedToCamera = true;
+        GUIBlueKey.visible = false;
+
+        GUIPinkKey = game.add.sprite(135, 10, 'PinkKey');
+        GUIPinkKey.frame = 5;
+        GUIPinkKey.fixedToCamera = true;
+        GUIPinkKey.visible = false;
+
+        GUIRedKey = game.add.sprite(170, 10, 'RedKey');
+        GUIRedKey.frame = 5;
+        GUIRedKey.fixedToCamera = true;
+        GUIRedKey.visible = false;
+
+        GUIGoldKey = game.add.sprite(205, 10, 'GoldKey');
+        GUIGoldKey.frame = 5;
+        GUIGoldKey.fixedToCamera = true;
+        GUIGoldKey.visible = false;
+
+        GUISoul = game.add.sprite(270, 10, 'Soul');
+        GUISoul.frame = 0;
+        GUISoul.fixedToCamera = true;
+
+        GunBlock = game.add.sprite(895, 25, 'KeyBlock');
+        GunBlock.anchor.set(0.5);
+        GunBlock.scale.setTo(1.5, 1);
+        GunBlock.fixedToCamera = true;
+
+        GUIPistol = game.add.sprite(770, 12, 'Pistol');
+        GUIPistol.fixedToCamera = true;
+
+        GUIMachinegun = game.add.sprite(770, 17, 'MachineGun');
+        GUIMachinegun.frame = 5;
+        GUIMachinegun.fixedToCamera = true;
+        GUIMachinegun.visible = false;
+
+        GUIShotgun = game.add.sprite(770, 17, 'ShotGun');
+        GUIShotgun.frame = 5;
+        GUIShotgun.fixedToCamera = true;
+        GUIShotgun.visible = false;
+
+        TimeBlock = game.add.sprite(550, 40, 'KeyBlock');
+        TimeBlock.anchor.set(0.5);
+        TimeBlock.scale.setTo(0.4, 1);
+        TimeBlock.fixedToCamera = true;
+
+        //----Doors-------------------------------------------
 
         //  Green Door
         GreenDoorHor = game.add.sprite(557, 530, 'GreenDoorHor');
@@ -388,6 +469,10 @@ zhgame.Level1.prototype = {
 
         weapon.multiFire = false;
 
+        weapon.pistol = true;
+        weapon.machinegun = false;
+        weapon.shotgun = false;
+
         //  Tell the Weapon to track the 'player' Sprite
         //  With no offsets from the position
         //  But the 'true' argument tells the weapon to track sprite rotation
@@ -531,6 +616,22 @@ zhgame.Level1.prototype = {
         //     game.paused = true;
         // });
 
+        //----GunAudio--------------------------------------------
+
+        game.PistolAudio = game.add.audio('PistolAudio', 1, false);
+        game.MachinegunAudio = game.add.audio('MachinegunAudio', 1, false);
+        game.ShotgunAudio = game.add.audio('ShotgunAudio', 1, false);
+
+        //----FX Audio-------------------------------------------
+        game.HealthAudio = game.add.audio('HealthAudio', 1, false);
+        game.SoulAudio = game.add.audio('SoulAudio', 1, false);
+        game.GunPickupAudio = game.add.audio('GunPickupAudio', 1, false);
+        game.ZombieDeathAudio = game.add.audio('ZombieDeathAudio', 1, false);
+        game.DoorAudio = game.add.audio('DoorAudio', 1, false);
+        game.KeyAudio = game.add.audio('KeyAudio', 1, false);
+
+        healthBonus = 4;
+
         game.stage.smoothed = false;
 
         createHealth();
@@ -610,6 +711,7 @@ zhgame.Level1.prototype = {
         //virtual pad movement
         if(!Phaser.Device.desktop)
         {
+            enemySpeed = 80;
             // enable and show mobile controls
             stick.enabled = true;
             stick.visible = true;
@@ -653,6 +755,7 @@ zhgame.Level1.prototype = {
         }
         else
         {
+            enemySpeed = 120;
             // disable and hide mobile controls
             stick.enabled = false;
             stick.visible = false;
@@ -684,24 +787,38 @@ zhgame.Level1.prototype = {
             // Fire Machine Gun
             if((game.input.activePointer.leftButton.isDown) && (player1.gun === 'MachineGun'))
             {
+                weapon.pistol = false;
+                weapon.machinegun = true;
+                weapon.shotgun = false;
                 weapon.fireLimit = 0;
                 weapon.bulletAngleVariance = 2;
+                // if(weapon.multiFire) {
+                //     game.MachinegunAudio.play();
+                // }
                 weapon.multiFire = false;
+                weapon.fireRate = 300;
                 MouseFire();
             }
 
             // Fire Pistol
             if((game.input.activePointer.leftButton.justPressed()) && (player1.gun === 'pistol'))
             {
+                weapon.pistol = true;
+                weapon.machinegun = false;
+                weapon.shotgun = false;
                 weapon.fireLimit = 0;
                 weapon.bulletAngleVariance = 0;
                 weapon.fireRate = 300;
+
                 MouseFire();
             }
 
             // Fire ShotGun
             if((game.input.activePointer.leftButton.justPressed()) && (player1.gun === 'ShotGun'))
             {
+                weapon.pistol = false;
+                weapon.machinegun = false;
+                weapon.shotgun = true;
                 weapon.fireRate = 300;
 
                 MouseFire();
@@ -781,7 +898,11 @@ zhgame.Level1.prototype = {
 
         });
 
+        // Check keys
+        CheckKey();
 
+        // Check gun
+        CheckGun();
 
         this.life.updateCrop();
 
@@ -795,18 +916,18 @@ zhgame.Level1.prototype = {
     },
 
     render: function() {
-        game.debug.text(game.time.fps + ' FPS', 900, 14, "#00ff00");
-        game.debug.text('justSpawned: ' + justSpawned, 250, 30);
-        game.debug.text('Souls: ' + player1.souls, 280, 14);
-        game.debug.text('Gun: ' + player1.gun, 750, 14);
-        game.debug.text('Score: ' + player1.score, 750, 30);
-        game.debug.text('greenKey: ' + player1.greenKey, 250, 45);
-        game.debug.text('blueKey: ' + player1.blueKey, 250, 60);
-        game.debug.text('pinkKey: ' + player1.pinkKey, 250, 75);
-        game.debug.text('redKey: ' + player1.redKey, 250, 90);
-        game.debug.text('goldKey: ' + player1.goldKey, 250, 105);
-        game.debug.text('Time: ' + totalLevelTime, 540, 50);
-        // game.debug.text('TestKey: ' + TestKey, 250, 120);
+        game.debug.text(game.time.fps + ' FPS', 950, 30,"#00ff00");
+        // game.debug.text('justSpawned: ' + justSpawned, 250, 30, "#ff0000");
+        game.debug.text(player1.souls, 315, 30, "#FFFFFF");
+        game.debug.text('Gun', 775, 17, "#FFF700");
+        game.debug.text('Score: ' + player1.score, 840, 30, "#FFF700");
+        // game.debug.text('greenKey: ' + player1.greenKey, 250, 45, "#179808");
+        // game.debug.text('blueKey: ' + player1.blueKey, 250, 60, "#2500ff");
+        // game.debug.text('pinkKey: ' + player1.pinkKey, 250, 75, "#ee05f2");
+        // game.debug.text('redKey: ' + player1.redKey, 250, 90, "#ff0000");
+        // game.debug.text('goldKey: ' + player1.goldKey, 250, 105, "#bd900a");
+        game.debug.text('Time: ' + totalLevelTime, 515, 54, "#ff0000");
+        // game.debug.text('TestKey: ' + TestKey, 250, 120, "#ff0000");
         game.debug.text(AscensionMsg, 300, 300);
        //game.renderSettings.enableScrollDelta = false;
 
@@ -820,13 +941,66 @@ zhgame.Level1.prototype = {
 
 };
 
+function CheckGun() {
+    console.log(player1.gun);
+    if(player1.gun === 'pistol')
+    {
+        GUIPistol.visible = true;
+        GUIMachinegun.visible = false;
+        GUIShotgun.visible = false;
+    }
+
+    if(player1.gun === 'MachineGun')
+    {
+        GUIPistol.visible = false;
+        GUIMachinegun.visible = true;
+        GUIShotgun.visible = false;
+    }
+
+    if(player1.gun === 'ShotGun')
+    {
+        GUIPistol.visible = false;
+        GUIMachinegun.visible = false;
+        GUIShotgun.visible = true;
+    }
+}
+
+function CheckKey() {
+
+    if(player1.greenKey)
+    {
+        GUIGreenKey.visible = true;
+    }
+
+    if(player1.blueKey)
+    {
+        GUIBlueKey.visible = true;
+    }
+
+    if(player1.pinkKey)
+    {
+        GUIPinkKey.visible = true;
+    }
+
+    if(player1.redKey)
+    {
+        GUIRedKey.visible = true;
+    }
+
+    if(player1.goldKey)
+    {
+        GUIGoldKey.visible = true;
+    }
+
+}
+
 function DisplayAscensionMsg() {
     // if(player1.keys < 4)
     // {
     //     AscensionMsg = "Too early. You need four keys and 200 souls to ascend";
     //     game.time.events.add(Phaser.Timer.SECOND * 0.5, hideMessage, this);
     // }
-    if((player1.souls < 10) || (player1.keys < 4))
+    if((player1.souls < 200) || (player1.keys < 4))
     {
         AscensionMsg = "Too early. You need four keys and 200 souls to ascend";
         game.time.events.add(Phaser.Timer.SECOND * 0.5, hideMessage, this);
@@ -834,7 +1008,11 @@ function DisplayAscensionMsg() {
     else
     {
         setScore();
-        FinalScore = FinalScore + 5000 + player1.souls;
+        FinalScore = FinalScore + 5000 + player1.souls * (healthBonus-healthCount) + (totalLevelTime * 100);
+        if(player1.keys > 4)
+        {
+            FinalScore = FinalScore + 10000;
+        }
         game.state.start('GameCompleteScreen', true, false, FinalScore);
     }
 
@@ -864,26 +1042,31 @@ function OpenDoor(player, door) {
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'BlueDoorHor') && (player1.blueKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'PinkDoorHor') && (player1.pinkKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'RedDoorHor') && (player1.redKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'GoldDoorHor') && (player1.goldKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
 
     // Vertical Doors
@@ -891,26 +1074,31 @@ function OpenDoor(player, door) {
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'BlueDoorVert') && (player1.blueKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'PinkDoorVert') && (player1.pinkKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'RedDoorVert') && (player1.redKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
     if((door.name === 'GoldDoorVert') && (player1.goldKey))
     {
         door.kill();
         AddToScore();
+        game.DoorAudio.play();
     }
 }
 
@@ -922,6 +1110,7 @@ function PickupKey(player, key) {
         AddToScore();
         key.kill();
         player1.keys++;
+        game.KeyAudio.play();
     }
     if(key.name === 'BlueKey')
     {
@@ -929,6 +1118,7 @@ function PickupKey(player, key) {
         AddToScore();
         key.kill();
         player1.keys++;
+        game.KeyAudio.play();
     }
     if(key.name === 'PinkKey')
     {
@@ -936,6 +1126,7 @@ function PickupKey(player, key) {
         AddToScore();
         key.kill();
         player1.keys++;
+        game.KeyAudio.play();
     }
     if(key.name === 'RedKey')
     {
@@ -943,6 +1134,7 @@ function PickupKey(player, key) {
         AddToScore();
         key.kill();
         player1.keys++;
+        game.KeyAudio.play();
     }
     if(key.name === 'GoldKey')
     {
@@ -954,6 +1146,7 @@ function PickupKey(player, key) {
         AddToScore();
         key.kill();
         player1.keys++;
+        game.KeyAudio.play();
     }
 
     TestKey = key.name;
@@ -1000,6 +1193,7 @@ function killZombie(bullet, enemy1) {
         enemyDeathLoc = enemy1;
         enemy1.kill();
         AddToScore();
+        game.ZombieDeathAudio.play();
         soul = souls.getFirstDead();
         soul.reset(enemyDeathLoc.x, enemyDeathLoc.y);
         //soul = game.add.sprite(enemyDeathLoc.x, enemyDeathLoc.y, 'Soul', 1);
@@ -1021,6 +1215,7 @@ function PickupHealth(){
     {
         health.kill();
         widthLife.width = totalLife;
+        game.HealthAudio.play();
         if(healthCount < 4)
         {
             createHealth();
@@ -1035,18 +1230,21 @@ function PickupSoul(player1, soulAnim){
     soulAnim.kill();
     player1.souls++;
     AddToScore();
+    game.SoulAudio.play();
 }
 
 function PickupMachineGun(player1, MachineGun){
     console.log('picked up machinegun');
     player1.gun = 'MachineGun';
     MachineGun.kill();
+    game.GunPickupAudio.play();
 }
 
 function PickupShotGun(player1, ShotGun){
     console.log('picked up shotgun');
     player1.gun = 'ShotGun';
     ShotGun.kill();
+    game.GunPickupAudio.play();
 }
 
 function createZombie() {
@@ -1123,27 +1321,39 @@ function MouseFire() {
     if((!weapon._hasFired) && (player1.gun === "pistol"))
     {
         player1.animations.play('shoot', 30, false);
+        weapon.onFire.add(playAudio);
+        weapon.onFire.add(playAudio);
         weapon.fire();
+        // if(weapon._hasFired) {
+        //     game.PistolAudio.play();
+        // }
         weapon._hasFired = true;
+
+        // game.PistolAudio.play();
     }
 
     if((player1.gun === 'MachineGun'))
     {
         console.log('firing machine gun');
         player1.animations.play('shoot', 30, false);
+        // if(weapon.multiFire) {
+        weapon.onFire.add(playAudio);
         weapon.fire();
+        //     game.MachinegunAudio.play();
+        // }
     }
 
     //weapon._hasFired = true;
     if((!weapon._hasFired) && (player1.gun === 'ShotGun'))
     {
+        weapon.onFire.add(playAudio);
         for(var i = 0; i < shotgunRounds; i++)
         {
             weapon.bulletAngleVariance = 20;
             weapon.fire();
         }
         player1.animations.play('shoot', 30, false);
-
+        //game.ShotgunAudio.play();
     }
 
 }
@@ -1155,30 +1365,44 @@ function GamepadFire(){
 
     if(player1.gun === 'MachineGun')
     {
+        weapon.pistol = false;
+        weapon.machinegun = true;
+        weapon.shotgun = false;
         fireButton.repeatRate = 100;
         weapon.fireLimit = 0;
         weapon.bulletAngleVariance = 2;
         weapon.multiFire = false;
+        weapon.onFire.add(playAudio);
         weapon.fire();
         player1.animations.play('shoot', 30, false);
+        // game.MachinegunAudio.play();
     }
 
     // Fire Pistol
     if(player1.gun === 'pistol')
     {
+        weapon.pistol = true;
+        weapon.machinegun = false;
+        weapon.shotgun = false;
         weapon.fireLimit = 0;
         weapon.bulletAngleVariance = 0;
         weapon.fireRate = 300;
+        weapon.onFire.add(playAudio);
         weapon.fire();
         player1.animations.play('shoot', 30, false);
+        // game.PistolAudio.play();
     }
 
     // Fire ShotGun
     if((player1.gun === 'ShotGun'))
     {
+        weapon.pistol = false;
+        weapon.machinegun = false;
+        weapon.shotgun = true;
         fireButton.repeatRate = 5000;
         weapon.fireLimit = 0;
         weapon.multiFire = true;
+        weapon.onFire.add(playAudio);
         for(var i = 0; i < shotgunRounds; i++)
         {
             weapon.bulletAngleVariance = 20;
@@ -1191,6 +1415,7 @@ function GamepadFire(){
         player1.animations.play('shoot', 30, false);
         weapon.fireRate = 300;
         //weapon.multiFire = false;
+        // game.ShotgunAudio.play();
     }
 
 
@@ -1235,3 +1460,14 @@ function gofull() {
 
 }
 
+function playAudio(bullet, weapon){
+    if(weapon.pistol) {
+        game.PistolAudio.play();
+    }
+    if(weapon.machinegun) {
+        game.MachinegunAudio.play();
+    }
+    if(weapon.shotgun) {
+        game.ShotgunAudio.play();
+    }
+}
