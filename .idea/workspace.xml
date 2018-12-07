@@ -17,7 +17,7 @@
       <file leaf-file-name="Level1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
+            <state relative-caret-position="0">
               <caret line="1148" column="21" lean-forward="false" selection-start-line="1148" selection-start-column="21" selection-end-line="1148" selection-end-column="21" />
               <folding>
                 <element signature="e#34936#35210#0" expanded="false" />
@@ -46,22 +46,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+            <state relative-caret-position="238">
+              <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZHPage.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZHPage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-              <folding />
+            <state relative-caret-position="188">
+              <caret line="55" column="87" lean-forward="false" selection-start-line="55" selection-start-column="87" selection-end-line="55" selection-end-column="87" />
+              <folding>
+                <element signature="n#style#0;n#h1#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#video#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,18 +75,8 @@
       <file leaf-file-name="ZHPageStylesheet.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPageStylesheet.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CTPBlog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="70" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="70" />
+            <state relative-caret-position="188">
+              <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -89,7 +85,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1513">
+            <state relative-caret-position="1462">
               <caret line="89" column="42" lean-forward="false" selection-start-line="89" selection-start-column="42" selection-end-line="89" selection-end-column="42" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -101,8 +97,8 @@
       <file leaf-file-name="CVMenu.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/CVMenu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2227">
-              <caret line="131" column="89" lean-forward="false" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="89" />
+            <state relative-caret-position="222">
+              <caret line="139" column="43" lean-forward="true" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -226,12 +222,12 @@
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/LandingPage.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/index.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/GameOverScreen.js" />
-        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPageStylesheet.css" />
-        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPage.html" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/MainMenu.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/GameCompleteScreen.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js" />
         <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPageStylesheet.css" />
+        <option value="$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPage.html" />
       </list>
     </option>
   </component>
@@ -245,8 +241,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="129" />
-    <option name="y" value="144" />
+    <option name="x" value="-7" />
+    <option name="y" value="151" />
     <option name="width" value="1791" />
     <option name="height" value="570" />
   </component>
@@ -266,6 +262,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,6 +275,12 @@
               <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
               <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
               <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="David-Scott-E-Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="CTPBlog" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="David-Scott-E-Portfolio" type="b2602c69:ProjectViewProjectNode" />
@@ -301,8 +305,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -395,16 +397,16 @@
       <workItem from="1541186053930" duration="307804000" />
       <workItem from="1543156271603" duration="57034000" />
       <workItem from="1543840444731" duration="113005000" />
-      <workItem from="1544126539479" duration="11522000" />
+      <workItem from="1544126539479" duration="14803000" />
+      <workItem from="1544153799601" duration="8044000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="832384000" />
+    <option name="totallyTimeSpent" value="843709000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="129" y="144" width="1791" height="570" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="151" width="1791" height="570" extended-state="0" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19887324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -493,13 +495,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js</url>
           <line>192</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js</url>
           <line>1320</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
@@ -597,6 +597,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="386" column="16" lean-forward="false" selection-start-line="386" selection-start-column="16" selection-end-line="386" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -770,19 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="70" lean-forward="false" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="70" />
-          <folding>
-            <element signature="n#!!block;n#tweenTint#0" expanded="false" />
-            <element signature="n#!!block;n#changeFullscreen#0" expanded="false" />
-            <element signature="n#!!block;n#gofull#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/CVMenu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="131" column="89" lean-forward="false" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="89" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -790,16 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
           <caret line="70" column="38" lean-forward="true" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="89" column="42" lean-forward="false" selection-start-line="89" selection-start-column="42" selection-end-line="89" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -811,34 +789,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="70" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlogStylesheet.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPageStylesheet.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -860,7 +814,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Level1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="0">
           <caret line="1148" column="21" lean-forward="false" selection-start-line="1148" selection-start-column="21" selection-end-line="1148" selection-end-column="21" />
           <folding>
             <element signature="e#34936#35210#0" expanded="false" />
@@ -888,11 +842,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CTPBlog/CTPBlog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-271">
+          <caret line="468" column="4" lean-forward="false" selection-start-line="468" selection-start-column="4" selection-end-line="469" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPageStylesheet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/js/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="238">
+          <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="89" column="42" lean-forward="false" selection-start-line="89" selection-start-column="42" selection-end-line="89" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/CV/CVMenu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="139" column="43" lean-forward="true" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David-Scott-E-Portfolio/ZombieHunter/ZHPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="55" column="87" lean-forward="false" selection-start-line="55" selection-start-column="87" selection-end-line="55" selection-end-column="87" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

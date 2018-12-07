@@ -5,11 +5,15 @@
 
 /* Header/Blog Title */
 .header {
-    padding: 30px;
+    /*padding: 30px;*/
     font-size: 40px;
     /*text-align: center;*/
     /*background: #1e1e1e;*/
     /*background-size: 50%;*/
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .center {
@@ -17,7 +21,7 @@
     /*font-size: 70px;*/
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 40%;
 }
 
 /* Create two unequal columns that floats next to each other */
@@ -35,19 +39,15 @@
 /* Right column */
 .rightcolumn {
     float: left;
-    width: 80%;
-    /*scroll-padding-left: 20px;*/
-    /*display: block;*/
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
-    font-size: 30px;
+    width: 100%;
+    font-size: 22px;
 }
 
 
 /* floatRight image */
 .floatRightDiv {
     float: right;
-    width: 50%;
+    width: 20%;
     padding: 20px;
 }
 
@@ -73,11 +73,16 @@
 
 /* Footer */
 .footer {
-    padding: 20px;
+    /*position: page;*/
+    /*padding: 20px;*/
     text-align: center;
-    background: #1e1e1e;
+    /*background: #1e1e1e;*/
     margin-top: 20px;
+    /*padding-left: auto;*/
+    /*padding-right: auto;*/
 }
+
+
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 1200px) {
